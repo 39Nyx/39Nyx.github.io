@@ -10,7 +10,6 @@ export default defineConfig({
     description: '不积跬步无以至千里，不积小流无以成江海。',
     rtl: false,
     nav: [
-      { title: '指南', link: '/guide/introduce' },
       {
         title: '基础',
         link: '/basic',
