@@ -1,6 +1,7 @@
 import { defineConfig } from 'dumi';
 
 export default defineConfig({
+  mfsu: false,
   outputPath: 'docs-dist',
   favicons: ['https://gw.alipayobjects.com/zos/rmsportal/rlpTLlbMzTNYuZGGCVYM.png'],
   themeConfig: {
@@ -9,13 +10,48 @@ export default defineConfig({
     description: '不积跬步无以至千里，不积小流无以成江海。',
     rtl: false,
     nav: [
-      { title: '基础', link: '/basic' },
-      { title: '进阶', link: '/advanced' },
-      { title: '框架', link: '/framework' },
-      { title: '工具', link: '/tools' },
+      { title: '指南', link: '/guide/introduce' },
+      {
+        title: '基础',
+        link: '/basic',
+        children: [
+          { title: 'JavaScript', link: '/js' },
+          { title: 'TypeScript', link: '/ts' }
+        ]
+      },
+      {
+        title: '框架',
+        link: '/framework',
+        children: [
+          { title: 'React', link: '/react' },
+          { title: 'Vue', link: '/vue' },
+          { title: 'Angular', link: '/angular' }
+        ]
+      },
+      {
+        title: '工具',
+        link: '/tools',
+        children: [
+          { title: 'Git', link: '/git' },
+          { title: 'Webstorm', link: '/webstorm' },
+          { title: 'npm', link: '/npm' },
+          { title: 'yarn', link: '/yarn' },
+          { title: 'pnpm', link: '/pnpm' },
+          { title: 'dUmi', link: '/d-umi' }
+        ]
+      },
+      {
+        title: '库',
+        link: '/lib',
+        children: [
+          { title: 'ant design pro', link: '/ant' }
+        ]
+      },
       { title: '样例', link: '/components' }
     ],
+    github: 'https://github.com/hezhijian249/hezhijian249.github.io',
     footer: 'Made with <span style="color: rgb(255, 255, 255);">❤</span> by <div>开源学习笔记</div>',
+    sidebarGroupModePath: ['/d-umi'],
     actions: [
       {
         type: 'primary',
