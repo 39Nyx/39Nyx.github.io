@@ -2,6 +2,12 @@ import { defineConfig } from 'dumi';
 
 export default defineConfig({
   mfsu: false,
+  resolve: {
+    atomDirs: [
+      { type: 'component', dir: 'src/echarts' },
+      { type: 'component', dir: 'src/ant' },
+    ],
+  },
   outputPath: 'docs-dist',
   favicons: ['https://gw.alipayobjects.com/zos/rmsportal/rlpTLlbMzTNYuZGGCVYM.png'],
   themeConfig: {
@@ -43,14 +49,15 @@ export default defineConfig({
         title: '库',
         link: '/lib',
         children: [
-          { title: 'ant design pro', link: '/ant' }
+          { title: 'ant design pro', link: '/ant' },
+          { title: 'echarts', link: '/echarts' }
         ]
       },
       { title: '样例', link: '/components' }
     ],
     github: 'https://github.com/hezhijian249/hezhijian249.github.io',
     footer: 'Made with <span style="color: rgb(255, 255, 255);">❤</span> by <div>开源学习笔记</div>',
-    sidebarGroupModePath: ['/d-umi'],
+    sidebarGroupModePath: ['/d-umi', '/components'],
     actions: [
       {
         type: 'primary',
