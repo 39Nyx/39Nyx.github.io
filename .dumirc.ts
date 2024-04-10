@@ -5,8 +5,8 @@ export default defineConfig({
   resolve: {
     atomDirs: [
       { type: 'component', dir: 'src/echarts' },
-      { type: 'component', dir: 'src/ant' },
-    ],
+      { type: 'component', dir: 'src/ant' }
+    ]
   },
   outputPath: 'docs-dist',
   favicons: ['https://gw.alipayobjects.com/zos/rmsportal/rlpTLlbMzTNYuZGGCVYM.png'],
@@ -15,6 +15,7 @@ export default defineConfig({
     title: '学习笔记',
     description: '不积跬步无以至千里，不积小流无以成江海。',
     rtl: false,
+    showLineNum: true,
     nav: [
       {
         title: '基础',
@@ -50,14 +51,15 @@ export default defineConfig({
         link: '/lib',
         children: [
           { title: 'ant design pro', link: '/ant' },
-          { title: 'echarts', link: '/echarts' }
+          { title: 'echarts', link: '/echarts' },
+          { title: 'umi.js', link: '/umi' }
         ]
       },
       { title: '样例', link: '/components' }
     ],
     github: 'https://github.com/hezhijian249/hezhijian249.github.io',
     footer: 'Made with <span style="color: rgb(255, 255, 255);">❤</span> by <div>开源学习笔记</div>',
-    sidebarGroupModePath: ['/d-umi', '/components'],
+    sidebarGroupModePath: ['/d-umi', '/components', '/umi'],
     actions: [
       {
         type: 'primary',
