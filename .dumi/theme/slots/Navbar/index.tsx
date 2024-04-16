@@ -58,7 +58,6 @@ const Navbar: React.FC = () => {
   const regLink = /^(\w+:)\/\/|^(mailto|tel):/;
   const nav = useSiteStore((s) => s.navData, shallow);
   const activePath = useSiteStore(activePathSel);
-  console.log(nav);
   const createMenuItems = (navList: any[]): MenuProps['items'] => {
     return navList.map((item) => ({
       label: item.children ? (
