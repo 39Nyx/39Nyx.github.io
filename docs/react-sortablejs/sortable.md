@@ -1,10 +1,7 @@
 ---
-title: 组件拖拽
+title: 快速开始
 description: 简要介绍 react-sortablejs 组件的用法。
-group:
-  title: react-sortablejs
-  order: 3
-order: 3
+order: 1
 ---
 
 ## 安装依赖

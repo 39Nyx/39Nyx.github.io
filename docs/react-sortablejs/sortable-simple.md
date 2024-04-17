@@ -1,9 +1,6 @@
 ---
 title: 简单拖拽
-group:
-  title: react-sortablejs
-  order: 3
-order: 4
+order: 2
 ---
 
 ## 简单拖拽
