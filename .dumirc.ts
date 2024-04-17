@@ -4,8 +4,8 @@ export default defineConfig({
   mfsu: false,
   resolve: {
     atomDirs: [
-      { type: 'component', dir: 'src/echarts' },
       { type: 'component', dir: 'src/ant' },
+      { type: 'component', dir: 'src/echarts' },
       { type: 'component', dir: 'src/react-sortablejs' },
     ],
   },
@@ -54,7 +54,15 @@ export default defineConfig({
           { title: 'umi.js', link: '/umi' },
         ],
       },
-      { title: '样例', link: '/components' },
+      {
+        title: '样例',
+        link: '/components',
+        children: [
+          { title: 'ant', link: '/components/pro-layout' },
+          { title: 'echarts', link: '/components/line-chart' },
+          { title: '拖拽', link: '/components/sortable' },
+        ],
+      },
     ],
     github: 'https://github.com/hezhijian249/hezhijian249.github.io',
   },
@@ -62,14 +70,4 @@ export default defineConfig({
   favicons: [
     'https://gw.alipayobjects.com/zos/hitu-asset/c88e3678-6900-4289-8538-31367c2d30f2/hitu-1609235995955-image.png',
   ],
-  // styles: [
-  //   `html, body { background: transparent;  }
-  //
-  // @media (prefers-color-scheme: dark) {
-  //   html, body { background: #0E1116; }
-  // }`
-  // ],
-  // codeSplitting: {
-  //   jsStrategy: 'granularChunks'
-  // }
 });
