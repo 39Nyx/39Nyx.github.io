@@ -2,13 +2,6 @@ import { defineConfig } from 'dumi';
 
 export default defineConfig({
   mfsu: false,
-  resolve: {
-    atomDirs: [
-      { type: 'component', dir: 'src/ant' },
-      { type: 'component', dir: 'src/echarts' },
-      { type: 'component', dir: 'src/react-sortablejs' },
-    ],
-  },
   outputPath: 'docs-dist',
   themeConfig: {
     name: ' ',
