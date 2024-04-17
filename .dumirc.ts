@@ -52,6 +52,7 @@ export default defineConfig({
           { title: 'ant design pro', link: '/ant' },
           { title: 'echarts', link: '/echarts' },
           { title: 'umi.js', link: '/umi' },
+          { title: '拖拽', link: '/react-sortablejs/sortable' },
         ],
       },
       {
@@ -60,7 +61,6 @@ export default defineConfig({
         children: [
           { title: 'ant', link: '/components/pro-layout' },
           { title: 'echarts', link: '/components/line-chart' },
-          { title: '拖拽', link: '/components/sortable' },
         ],
       },
     ],
