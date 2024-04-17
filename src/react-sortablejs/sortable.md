@@ -3,8 +3,8 @@ title: 组件拖拽
 description: 简要介绍 react-sortablejs 组件的用法。
 group:
   title: react-sortablejs
-  sort: 3
-sort: 3
+  order: 3
+order: 3
 ---
 
 ## 安装依赖
@@ -16,7 +16,3 @@ sort: 3
 再安装 `sortablejs` 的类型定义文件 `@types/sortablejs`。
 
 <InstallDependencies npm='$ npm install @types/sortablejs -D' yarn='$ yarn add @types/sortablejs -D' pnpm='$ pnpm add @types/sortablejs -D'></InstallDependencies>
-
-## 简单拖拽
-
-<code src="./demos/SimpleList/index.tsx"></code>
