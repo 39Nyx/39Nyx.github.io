@@ -15,7 +15,7 @@ export function handleFullSidebarData(
       key = `/${key.split('/')[1]}`;
     }
     if (!nextFullSidebarData[key]) {
-      nextFullSidebarData[key] = fullSidebarData[key];
+      nextFullSidebarData[key] = fullSidebarData[oldKey];
     } else {
       nextFullSidebarData[key] = mergeSidebarGroup(
         cloneDeep(fullSidebarData[oldKey]),
