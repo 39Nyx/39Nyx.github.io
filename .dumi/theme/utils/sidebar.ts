@@ -6,20 +6,20 @@ import { cloneDeep } from 'lodash';
  * @param fullSidebarData
  */
 export function handleFullSidebarData(
-  fullSidebarData: Record<string, ISidebarGroup[]>,
+  fullSidebarData: Record<string, ISidebarGroup[]>
 ): Record<string, ISidebarGroup[]> {
   const nextFullSidebarData: Record<string, ISidebarGroup[]> = {};
   Object.keys(fullSidebarData).forEach((key: string) => {
     const oldKey = key;
     if (key.split('/').length > 2) {
-      key = `/${key.split('/')[1]}`;
+      key = `/${ key.split('/')[1] }`;
     }
     if (!nextFullSidebarData[key]) {
       nextFullSidebarData[key] = fullSidebarData[oldKey];
     } else {
       nextFullSidebarData[key] = mergeSidebarGroup(
         cloneDeep(fullSidebarData[oldKey]),
-        cloneDeep(nextFullSidebarData[key]),
+        cloneDeep(nextFullSidebarData[key])
       );
     }
   });
@@ -33,7 +33,7 @@ export function handleFullSidebarData(
  */
 function mergeSidebarGroup(
   fullSidebarData: ISidebarGroup[],
-  nextFullSidebarData: ISidebarGroup[],
+  nextFullSidebarData: ISidebarGroup[]
 ): ISidebarGroup[] {
   const map: Record<string, ISidebarGroup> = {};
   const forEachCallback = (group: ISidebarGroup) => {
@@ -42,7 +42,7 @@ function mergeSidebarGroup(
       map[key] = {
         title: group.title,
         order: group.order,
-        children: group.children,
+        children: group.children
       };
     } else {
       if (map[key].order > group.order) {
