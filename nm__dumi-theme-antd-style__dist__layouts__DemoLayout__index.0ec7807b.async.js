@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkhezhijian249=self.webpackChunkhezhijian249||[]).push([[946],{82304:function(h,u,n){n.r(u);var t=n(508),E=n(22596),_=n(85893);u.default=function(){var e=(0,t.pC)();return(0,_.jsx)(E.Z,{children:e})}}}]);
