@@ -45,6 +45,7 @@
   },
   "dependencies": {
     "@ant-design/icons": "^5.3.6",
+    "@monaco-editor/react": "^4.6.0",
     "antd": "^5.16.1",
     "antd-style": "^3.6.2",
     "fast-deep-equal": "^3.1.3",
