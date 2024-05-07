@@ -15,6 +15,7 @@ export default defineConfig({
         children: [
           { title: 'JavaScript', link: '/js' },
           { title: 'TypeScript', link: '/ts' },
+          { title: '算法', link: '/algorithm/question/dynamic-programming' },
         ],
       },
       {
