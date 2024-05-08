@@ -29,6 +29,7 @@ const SourceCode: React.FC<ISourceCodeProps> = (props) => {
     <pre
       style={{
         height: `${lineCount * 10 + 20}px`,
+        marginTop: 0,
       }}
       ref={ref}
     ></pre>
