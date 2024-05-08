@@ -5,7 +5,7 @@ order: 2
 
 ## 安装主题
 
-可以在 d-umi 的[主题市场](https://d.umijs.org/theme/market)中找到自己想要的主题，我选择的是`dumi-theme-antd`主题。其他主题的配置方法类似，这里就不再赘述。
+可以在 d-umi 的[主题市场](https://d.umijs.org/theme/market)中找到自己想要的主题，例如安装`dumi-theme-antd`主题。其他主题的配置方法类似，这里就不再赘述。
 
 <InstallDependencies 
   pnpm='$ pnpm add dumi-theme-antd -D '
