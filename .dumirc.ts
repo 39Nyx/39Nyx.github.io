@@ -1,5 +1,7 @@
 import { defineConfig } from 'dumi';
 
+const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
+
 export default defineConfig({
   mfsu: false,
   outputPath: 'docs-dist',
@@ -64,4 +66,8 @@ export default defineConfig({
   favicons: [
     'https://gw.alipayobjects.com/zos/hitu-asset/c88e3678-6900-4289-8538-31367c2d30f2/hitu-1609235995955-image.png',
   ],
+  chainWebpack(memo) {
+    memo.plugin('monaco').use(new MonacoWebpackPlugin());
+    return memo;
+  },
 });

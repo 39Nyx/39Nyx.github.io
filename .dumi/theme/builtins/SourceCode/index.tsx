@@ -1,29 +1,38 @@
-import Editor from '@monaco-editor/react';
 import OriginSourceCode, {
   ISourceCodeProps,
 } from 'dumi/theme-default/builtins/SourceCode';
-import React from 'react';
+import * as monaca from 'monaco-editor';
+import React, { useEffect, useRef } from 'react';
 
 const SourceCode: React.FC<ISourceCodeProps> = (props) => {
-  const simpleLanguages: string[] = ['text'];
+  const simpleLanguages: string[] = ['text', 'shell'];
   if (!props.lang || simpleLanguages.includes(props.lang)) {
     return <OriginSourceCode {...props}>{props.children}</OriginSourceCode>;
   }
-  const lineCount = props.children.split('\n').length;
+  const lineCount: number = props.children.split('\n').length;
   const languageMap: any = {
     ts: 'typescript',
     tsx: 'typescript',
   };
+  const ref = useRef<any>(null);
+  useEffect(() => {
+    const editor = monaca.editor.create(ref.current, {
+      value: props.children,
+      language: languageMap[props.lang] || props.lang,
+      readOnly: true,
+      wordWrap: 'on',
+      automaticLayout: true,
+      scrollBeyondLastLine: false,
+    });
+  }, []);
   return (
-    <Editor
-      height={`${lineCount * 18 + 20}px`}
-      language={languageMap[props.lang] || props.lang}
-      defaultValue={props.children}
-      options={{
-        readOnly: true,
-        wordWrap: 'on',
+    <pre
+      style={{
+        height: `${lineCount * 10 + 20}px`,
       }}
-    />
+      ref={ref}
+    ></pre>
   );
 };
+
 export default SourceCode;
