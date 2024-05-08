@@ -32,7 +32,7 @@ group:
 
 :::code-group
 
-```typescript [ts]
+```typescript [typescript]
 /**
  *
  * @param list 需要查找的数组
@@ -67,7 +67,7 @@ const index = binarySearchBasic(list, target);
 console.log(index); // Output: 2
 ```
 
-```javascript [js]
+```javascript [javascript]
 /**
  *
  * @param list 需要查找的数组
