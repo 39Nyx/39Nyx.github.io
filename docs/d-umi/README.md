@@ -1,14 +1,11 @@
 ---
-group:
-  title: 如何使用
-  order: 2
-title: 快速上手
+title: 快速开始
 order: 1
 ---
 
 ## 创建项目
 
-```bash
+```shell
 # 先找个地方建个空目录。
 $ mkdir myapp && cd myapp
 
@@ -24,4 +21,3 @@ $     Theme Package # 主题包开发脚手架，用于开发主题包
 # 安装依赖后启动项目
 $ npm start
 ```
-
