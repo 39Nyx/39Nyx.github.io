@@ -26,6 +26,7 @@ export default defineConfig({
         children: [
           { title: 'React', link: '/react' },
           { title: 'Vue', link: '/vue' },
+          { title: 'Vue2', link: '/vue2' },
           { title: 'Angular', link: '/angular' },
         ],
       },
