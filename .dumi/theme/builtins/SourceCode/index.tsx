@@ -3,9 +3,11 @@ import OriginSourceCode, {
 } from 'dumi/theme-default/builtins/SourceCode';
 import * as monaca from 'monaco-editor';
 import React, { useEffect, useRef } from 'react';
+import { useStyles } from './style';
 
 const SourceCode: React.FC<ISourceCodeProps> = (props) => {
   const simpleLanguages: string[] = ['text', 'shell'];
+  const { styles } = useStyles();
   if (!props.lang || simpleLanguages.includes(props.lang)) {
     return <OriginSourceCode {...props}>{props.children}</OriginSourceCode>;
   }
@@ -24,16 +26,51 @@ const SourceCode: React.FC<ISourceCodeProps> = (props) => {
       automaticLayout: true,
       scrollBeyondLastLine: false,
     });
+    if (props.highlightLines) {
+      const ranges: { startLineNumber: number; endLineNumber: number }[] = [];
+      let currentLine: number = props.highlightLines[0];
+      let index: number = 1;
+      let start: number = currentLine;
+      while (index < props.highlightLines.length) {
+        if (props.highlightLines[index] === currentLine + 1) {
+          index++;
+        } else {
+          ranges.push({ startLineNumber: start, endLineNumber: currentLine });
+          start = props.highlightLines[index];
+          currentLine = start;
+          index++;
+        }
+      }
+      ranges.push({ startLineNumber: start, endLineNumber: currentLine });
+      editor.createDecorationsCollection(
+        ranges.map((range) => {
+          return {
+            range: new monaca.Range(
+              range.startLineNumber,
+              1,
+              range.endLineNumber,
+              1,
+            ),
+            options: {
+              isWholeLine: true,
+              className: styles.myContentClass,
+            },
+          };
+        }),
+      );
+      console.log(props.highlightLines);
+    }
   }, []);
+  const height = lineCount * 18 + 20;
   return (
     <pre
       style={{
-        height: `${lineCount * 10 + 20}px`,
+        height: `${height > 500 ? 500 : height}px`,
         marginTop: 0,
       }}
       ref={ref}
     ></pre>
   );
 };
-
+//
 export default SourceCode;
