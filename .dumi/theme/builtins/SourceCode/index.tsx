@@ -58,7 +58,6 @@ const SourceCode: React.FC<ISourceCodeProps> = (props) => {
           };
         }),
       );
-      console.log(props.highlightLines);
     }
   }, []);
   const height = lineCount * 18 + 20;
