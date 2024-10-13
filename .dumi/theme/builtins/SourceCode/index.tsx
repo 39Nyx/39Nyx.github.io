@@ -5,10 +5,14 @@ import * as monaca from 'monaco-editor';
 import React, { useEffect, useRef } from 'react';
 import { useStyles } from './style';
 
-const SourceCode: React.FC<ISourceCodeProps> = (props) => {
+interface SourceCodeProps extends ISourceCodeProps {
+  monacoEditor?: boolean;
+}
+
+const SourceCode: React.FC<SourceCodeProps> = (props) => {
   const simpleLanguages: string[] = ['text', 'shell'];
   const { styles } = useStyles();
-  if (!props.lang || simpleLanguages.includes(props.lang)) {
+  if (!props.monacoEditor) {
     return <OriginSourceCode {...props}>{props.children}</OriginSourceCode>;
   }
   const lineCount: number = props.children.split('\n').length;
@@ -71,5 +75,5 @@ const SourceCode: React.FC<ISourceCodeProps> = (props) => {
     ></pre>
   );
 };
-//
+
 export default SourceCode;
