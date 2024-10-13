@@ -50,6 +50,7 @@ export default defineConfig({
           { title: 'echarts', link: '/echarts' },
           { title: 'umi.js', link: '/umi' },
           { title: '拖拽', link: '/react-sortablejs/sortable' },
+          { title: 'three.js', link: '/three' },
         ],
       },
       {
