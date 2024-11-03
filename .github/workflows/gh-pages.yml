@@ -1,27 +1,53 @@
-name: github pages
+name: Deploy static content to Pages
 
 on:
+  # 仅在推送到默认分支时运行。
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    branches: ['main']
+
+  # 这个选项可以使你手动在 Action tab 页面触发工作流
+  workflow_dispatch:
+
+# 设置 GITHUB_TOKEN 的权限，以允许部署到 GitHub Pages。
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 允许一个并发的部署
+concurrency:
+  group: 'pages'
+  cancel-in-progress: true
 
 jobs:
-  build-and-deploy:
+  # 单次部署的工作描述
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout 🛎️
+      - name: Checkout
         uses: actions/checkout@v4
-      - name: Setup Node.js
+      - name: 设置node环境
         uses: actions/setup-node@v4
         with:
           node-version: 20.x
-      - name: Install dependencies
-        run: npm install
-      - name: Build
-        run: npm run docs:build
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@v4
+      - name: 设置pnpm环境
+        uses: pnpm/action-setup@v4
         with:
-          branch: build
-          folder: docs-dist
+          version: 9
+      - name: 安装依赖
+        run: pnpm install
+      - name: Build
+        run: pnpm run build
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Upload dist folder
+          path: './dist'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
