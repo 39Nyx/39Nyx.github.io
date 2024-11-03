@@ -40,14 +40,14 @@ jobs:
       - name: 安装依赖
         run: pnpm install
       - name: Build
-        run: pnpm run build
+        run: pnpm run docs:build
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           # Upload dist folder
-          path: './dist'
+          path: './docs'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
