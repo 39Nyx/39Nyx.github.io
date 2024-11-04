@@ -40,6 +40,7 @@ export default defineConfig({
           { title: 'yarn', link: '/yarn' },
           { title: 'pnpm', link: '/pnpm' },
           { title: 'dUmi', link: '/d-umi' },
+          { title: 'github', link: '/github' },
         ],
       },
       {
@@ -47,9 +48,17 @@ export default defineConfig({
         link: '/lib',
         children: [
           { title: 'ant design pro', link: '/ant' },
-          { title: 'echarts', link: '/echarts' },
           { title: 'umi.js', link: '/umi' },
           { title: '拖拽', link: '/react-sortablejs/sortable' },
+          { title: 'unoCss', link: '/unoCss' },
+        ],
+      },
+      {
+        title: '可视化',
+        link: '/visualization',
+        children: [
+          { title: 'webgl', link: '/webgl' },
+          { title: 'echarts', link: '/echarts' },
           { title: 'three.js', link: '/three' },
         ],
       },
