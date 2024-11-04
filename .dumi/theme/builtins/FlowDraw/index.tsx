@@ -6,6 +6,7 @@ import React, { useEffect, useState } from 'react';
 const FlowDraw: React.FC<any> = (props) => {
   const [initialData, setInitialData] = useState<any>({});
   const [drawAPI, setDrawAPI] = useState<any>({});
+  const { height = '500px' } = props;
   useEffect(() => {
     axios.get(props.src).then((res) => {
       setInitialData(res.data);
@@ -13,13 +14,12 @@ const FlowDraw: React.FC<any> = (props) => {
   }, []);
 
   useEffect(() => {
-    if (!isEmpty(initialData)) {
+    if (!isEmpty(initialData) && drawAPI?.updateScene) {
       drawAPI?.updateScene(initialData);
-      drawAPI?.resetScene();
     }
   }, [drawAPI, initialData]);
   return (
-    <div style={{ height: '500px' }}>
+    <div style={{ height: height }}>
       <Excalidraw
         initialData={initialData}
         excalidrawAPI={(api: any) => {
