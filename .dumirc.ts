@@ -81,4 +81,6 @@ export default defineConfig({
     memo.plugin('monaco').use(new MonacoWebpackPlugin());
     return memo;
   },
+  plugins: ['./plugins/handleGlSl'],
+  changeFavicon: 'true',
 });
