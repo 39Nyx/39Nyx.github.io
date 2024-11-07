@@ -66,29 +66,31 @@ function generateGlsl() {
   );
 }
 
-export default (api: IApi) => {
-  api.describe({
-    key: 'changeFavicon',
-    config: {
-      schema(joi) {
-        return joi.string();
-      },
-      onChange: api.ConfigChangeType.regenerateTmpFiles,
-    },
-    enableBy: api.EnableBy.config,
-  });
+generateGlsl()
 
-  api.register({
-    key: 'addFoo',
-    // 同步
-    fn: (args: any) => {
-      console.log('addFoo', args);
-      return args;
-    },
-  });
-
-  api.modifyConfig((memo) => {
-    generateGlsl();
-    return memo;
-  });
-};
+// export default (api: IApi) => {
+//   api.describe({
+//     key: 'changeFavicon',
+//     config: {
+//       schema(joi) {
+//         return joi.string();
+//       },
+//       onChange: api.ConfigChangeType.regenerateTmpFiles,
+//     },
+//     enableBy: api.EnableBy.config,
+//   });
+//
+//   api.register({
+//     key: 'addFoo',
+//     // 同步
+//     fn: (args: any) => {
+//       console.log('addFoo', args);
+//       return args;
+//     },
+//   });
+//
+//   api.modifyConfig((memo) => {
+//     generateGlsl();
+//     return memo;
+//   });
+// };
