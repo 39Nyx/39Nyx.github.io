@@ -12,7 +12,7 @@ group:
 
 简单写一下目录结构，后续待补充
 
-```
+```text
 ├── benchmarks
 ├── examples
 ├── flow
@@ -70,3 +70,34 @@ group:
 
 在阅读 vue 源码的时候，然后在对应位置进行`debugger`, 然后根据需要调整`helloWorld.html`文件内容,实现边阅读边调试的效果，
 避免直接干读，读的云里雾里
+
+## 调试
+
+还是以之前的`helloWorld.html`文件为例，在 `new Vue()`函数的位置打一个断点，然后刷新浏览器，浏览器会自动进入调试模式，
+
+```html {13}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+  </head>
+  <body>
+    <div id="app">{{ message }}</div>
+
+    <!--文件路径根据创建位置进行调整即可-->
+    <script src="../../dist/vue.js"></script>
+    <script>
+      debugger;
+      const app = new Vue({
+        el: '#app',
+        data: {
+          message: 'Hello Vue!',
+        },
+      });
+    </script>
+  </body>
+</html>
+```
+
+![](./images/断点.png)
