@@ -41,16 +41,15 @@ function generateGlsl() {
       hasId,
     )}`;
     variableNameList.push(
-      `'${filePath.substring(
-        currentDirectory.length,
+      `\t'${filePath.substring(
+        currentDirectory.length + 1,
       )}': { value: ${variableName} }`,
     );
     return `import ${variableName} from '!!raw-loader!${filePath}';`;
   });
   const textValue = `${importStringList.join(
     '\n',
-  )}\nexport const glslMeta = {\n${variableNameList.join(', ')}\n}`;
-  console.log(textValue);
+  )}\nexport const glslMeta: any = {\n${variableNameList.join(', ')}\n}`;
   fs.writeFile(
     path.join(currentDirectory, '.dumi/theme/utils/glsl.ts'),
     textValue,
