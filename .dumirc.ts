@@ -74,13 +74,14 @@ export default defineConfig({
     github: 'https://github.com/hezhijian249/hezhijian249.github.io',
   },
   html2sketch: {},
+  headScripts: [
+    'window.EXCALIDRAW_ASSET_PATH = "/draw/";'
+  ],
   favicons: [
     'https://gw.alipayobjects.com/zos/hitu-asset/c88e3678-6900-4289-8538-31367c2d30f2/hitu-1609235995955-image.png',
   ],
   chainWebpack(memo) {
     memo.plugin('monaco').use(new MonacoWebpackPlugin());
     return memo;
-  },
-  // plugins: ['./plugins/handleGlSl'],
-  // changeFavicon: 'true',
+  }
 });
