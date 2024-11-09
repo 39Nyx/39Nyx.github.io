@@ -2,7 +2,7 @@
 title: 代码块
 order: 1
 group:
-  title: 主题定制
+  title: 扩展
   order: 2
 ---
 
