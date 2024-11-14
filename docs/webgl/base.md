@@ -36,3 +36,7 @@ WebGL 程序在屏幕上同时使用`HTML`和`Javascript`|`Typescript`来创建�
 - 设置背景色
 
 - 清空 Canvas
+
+## 绘制一个点(版本1)
+
+<code src="./demos/HelloPoint1/index.tsx"></code>
