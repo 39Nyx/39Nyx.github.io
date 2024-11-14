@@ -1,8 +1,9 @@
 import { glslMeta } from '../../utils/glsl';
 
 export function collectGlSlDependencies(props: any) {
-  const { id, dependencies } = props.asset;
-  const urlPrefix = id.split('-').slice(0, -3).join('/') + '/demos';
+  const { dependencies } = props.asset;
+  const filename: string = props.filename;
+  const urlPrefix = filename.split('/').slice(0, -1).join('/');
   const dependenciesMap: Record<string, { type: string, value: string }> = {};
   if (dependencies) {
     const indexTsx = dependencies['index.tsx'].value;
