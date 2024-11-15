@@ -5,7 +5,7 @@ import {
   PerspectiveCamera,
   Scene,
   Vector3,
-  WebGLRenderer,
+  WebGLRenderer
 } from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { Sky } from 'three/examples/jsm/objects/Sky';
@@ -37,7 +37,7 @@ const App: React.FC = () => {
         60,
         element.clientWidth / element.clientHeight,
         100,
-        2000000,
+        2000000
       );
       camera.position.set(0, 100, 2000);
 
@@ -69,8 +69,22 @@ const App: React.FC = () => {
   useEffect(() => {
     init();
     initSky();
+    const resizeObserver = new ResizeObserver(entries => {
+      entries.forEach(entry => {
+        const target = entry.target as HTMLElement;
+        if (target.clientHeight) {
+          camera.aspect = target.clientWidth / target.clientHeight;
+          camera.updateProjectionMatrix();
+          renderer.setSize(target.clientWidth, target.clientHeight);
+        }
+      });
+    });
+    resizeObserver.observe(containerRef.current);
+    return () => {
+      resizeObserver.disconnect();
+    };
   }, []);
-  return <div className={styles.container} ref={containerRef}></div>;
+  return <div className={ styles.container } ref={ containerRef }></div>;
 };
 
 export default App;

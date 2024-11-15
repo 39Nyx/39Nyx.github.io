@@ -5,6 +5,7 @@ export const useStyles = createStyles(({ css }) => {
     container: css`
       min-height: 300px;
       height: 100%;
+      width: 100%;
     `,
   };
 });
