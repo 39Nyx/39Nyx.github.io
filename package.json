@@ -75,7 +75,7 @@
     "@types/sortablejs": "^1.15.8",
     "@umijs/lint": "^4.0.0",
     "dumi": "^2.4.13",
-    "dumi-theme-antd-style": "^0.31.0",
+    "dumi-theme-antd-style": "^0.31.1",
     "eslint": "^8.23.0",
     "father": "^4.1.0",
     "husky": "^8.0.1",
