@@ -75,6 +75,10 @@ export default defineConfig({
     github: 'https://github.com/hezhijian249/hezhijian249.github.io'
   },
   html2sketch: {},
+  analytics: {
+    ga_v2: 'G-Z3WZ2TPVNJ',
+    baidu: '37f2470d412281b6e20b1ce407956d30'
+  },
   headScripts: [
     'window.EXCALIDRAW_ASSET_PATH = "/draw/";'
   ],
