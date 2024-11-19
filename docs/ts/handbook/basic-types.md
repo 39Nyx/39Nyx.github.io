@@ -3,7 +3,7 @@ title: 基本类型
 group:
   title: 手册
   order: 2
-order: 1
+order: 2
 ---
 
 ## 基本类型
