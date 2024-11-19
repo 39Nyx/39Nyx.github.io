@@ -20,11 +20,13 @@ const num: number = 42;
 const bool: boolean = true;
 ```
 
-> 类型名称 String、Number 和 Boolean（以大写字母开头）是合法的，但它们指的是一些很少出现在您的代码中的特殊内置类型。始终使用 string、number 或 boolean 来表示类型。
+> 类型名称 String、Number 和 Boolean（以大写字母开头）是合法的，但它们指的是一些很少出现在您的代码中的特殊内置类型。始终使用
+> string、number 或 boolean 来表示类型。
 
 ## 数组
 
-要指定数组的类型(例如`[1, 2, 3]`), 可以使用语法`number[]`; 此语法适用于任何类型(例如`string[]`是字符串数组、`boolean[]`是布尔数组等)。 还可以写成`Array<number>`, 表达的内容是一样的。
+要指定数组的类型(例如`[1, 2, 3]`), 可以使用语法`number[]`; 此语法适用于任何类型(例如`string[]`是字符串数组、`boolean[]`
+是布尔数组等)。 还可以写成`Array<number>`, 表达的内容是一样的。
 
 ```typescript
 const arr1: number[] = [1, 2, 3];
@@ -37,7 +39,8 @@ const arr6: Array<boolean> = [true, false];
 
 ## any 类型
 
-TypeScript 还有一种特殊类型, 即`any`类型。它可以表示任意类型，包括那些在编译时还不知道的类型。一般来说，`any`类型是不安全的，应尽量避免使用。
+TypeScript 还有一种特殊类型, 即`any`类型。它可以表示任意类型，包括那些在编译时还不知道的类型。一般来说，`any`
+类型是不安全的，应尽量避免使用。
 
 ```typescript
 let notSure: any = 4;
@@ -47,7 +50,8 @@ notSure = false;
 
 ### noImplicitAny
 
-在某些情况下，如果没有明确的类型注解，TypeScript 会默认将变量类型设置为`any`， 即隐式 any 类型。这时，可以使用`noImplicitAny`选项来禁用这种行为。
+在某些情况下，如果没有明确的类型注解，TypeScript 会默认将变量类型设置为`any`， 即隐式 any 类型。这时，可以使用`noImplicitAny`
+选项来禁用这种行为。
 
 在`tsconfig.json`中添加以下配置：
 
@@ -93,7 +97,8 @@ const bool = true;
 
 ## 函数
 
-TypeScript 支持函数类型注解，可以让你在代码中明确指定函数的输入和输出类型。当你在函数调用时，TypeScript 可以检查参数和返回值的类型是否匹配。
+TypeScript 支持函数类型注解，可以让你在代码中明确指定函数的输入和输出类型。当你在函数调用时，TypeScript
+会检查参数和返回值的类型是否匹配，如果不匹配，那么将会出现告警提示。
 
 ### 函数参数类型注解
 
@@ -138,6 +143,49 @@ names.forEach((name) => {
 });
 ```
 
-在上面的例子中，TypeScript 会自动推导出`forEach`函数的类型，其中参数类型是`string`，返回值类型是`void`。但是，由于`toUppercase`方法并不存在于`string`类型中，TypeScript 会报错。
+在上面的例子中，TypeScript 会自动推导出`forEach`函数的类型，其中参数类型是`string`，返回值类型是`void`。但是，由于
+`toUppercase`方法并不存在于`string`类型中，TypeScript 会报错。
 
-这个过程称为上下文类型化, 因为函数出现的上下文决定了它应该具有什么类型。与推理规则类似，不需要明确了解这种情况是如何发生的, 但了解这种情况确实会发生可以帮助您注意到何时不需要类型注释。
+这个过程称为上下文类型化, 因为函数出现的上下文决定了它应该具有什么类型。与推理规则类似，不需要明确了解这种情况是如何发生的,
+但了解这种情况确实会发生可以帮助您注意到何时不需要类型注释。
+
+## Object 类型
+
+除了基础数据类型之外，常见的类型就是对象类型，要定义对象类型，只需要列出其属性及其类型即可。
+
+例如下面例子，函数参数是一个对象类型，那么可以这样定义
+
+```typescript
+function printCoord(pt: { x: number; y: number }) {
+  console.log("The coordinate's x value is " + pt.x);
+  console.log("The coordinate's y value is " + pt.y);
+}
+
+printCoord({ x: 3, y: 7 });
+```
+
+其中不同属性之间用分号分隔，也可以使用逗号分隔，例如`function printCoord(pt: { x: number, y: number }) {`,
+并且每个属性之间的类型是可选的，如果不指定，那么默认为`any`类型。
+
+### 可选属性
+
+对象的类型可以指定某些属性为可选的，也可以指定所有属性为可选的。如果要将其作为可选的，那么在`:`前面加上`?`即可。
+
+```typescript
+function printCoord(pt: { x: number; y?: number }) {
+  console.log('The coordinate\'s x value is ' + pt.x);
+  console.log('The coordinate\'s y value is ' + pt.y);
+}
+
+printCoord({ x: 3, y: 7 });
+// The coordinate's x value is 3
+// main.ts:8 The coordinate's y value is 7
+printCoord({ x: 5 });
+// The coordinate's x value is 5
+// The coordinate's y value is undefined
+```
+
+设置为可选的属性，如果不传，则值为`undefined`，所以在使用的时候需要提前做一下判断
+
+### 联合类型
+
