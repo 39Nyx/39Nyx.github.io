@@ -189,3 +189,195 @@ printCoord({ x: 5 });
 
 ### 联合类型
 
+`Typescript`允许使用各种运算符从现有的类型构建新类型。联合类型是有两种或多种其他类型组成的类型，表示的值可以是其中任何一种类型，将类型中的每一个称为联合的成员类型。
+
+联合类型可以用`|`运算符来表示，例如`number | string`表示可以是`number`类型或`string`类型。
+
+```typescript
+function printId(id: number | string) {
+  console.log(id.toUpperCase())
+}
+```
+
+如果是联合类型的时候，只使用其中一个类型上有的方法，那么就会报一下错误
+
+```html
+TS2339: Property toUpperCase does not exist on type string | number
+Property toUpperCase does not exist on type number
+```
+
+这个时候可以使用`typeof`关键字来判断类型，例如
+
+```typescript
+function printId(id: number | string) {
+  if (typeof id === 'number') {
+    console.log(id.toFixed(2))
+  } else {
+    console.log(id.toUpperCase())
+  }
+}
+```
+
+并且在`else`分支并不需要使用`typeof id === string`判断, 因为只有两种类型，表示`number`就是`string`了
+
+如果定义的联合类型，使用的方法是两种类型都有的方法，那么这个时候也可以不`typeof`关键字判断类型再去使用, 例如数组和字符串都有`slice`方法
+
+```typescript
+function getFirstThree(x: number[] | string) {
+  // 不需要使用typeof关键字判断类型， 可以直接使用
+  return x.slice(0, 3);
+}
+```
+
+## 类型别名
+
+类型别名可以给一个类型起一个新的名字，方便使用。
+
+例如`string`和`number`的联合类型，可以起一个新的别名
+
+```typescript
+type MyType = number | string;
+
+function printId(id: MyType) {
+  if (typeof id === 'number') {
+    console.log(id.toFixed(2));
+  } else {
+    console.log(id.toUpperCase());
+  }
+}
+```
+
+给对象类型也可以起一个别名
+
+```typescript
+type Person = {
+  name: string;
+  age: number;
+};
+
+function printPerson(person: Person) {
+  console.log(person.name);
+  console.log(person.age);
+}
+
+printPerson({ name: 'Alice', age: 25 });
+```
+
+## 接口
+
+接口是命名对象类型的另外一种方式
+
+```typescript
+interface Person {
+  name: string;
+  age: number;
+}
+
+function printPerson(person: Person) {
+  console.log(person.name);
+  console.log(person.age);
+}
+
+printPerson({ name: 'Alice', age: 25 });
+```
+
+### 接口和别名的区别
+
+接口和别名都可以用来定义对象的类型，但是它们的区别在于：
+
+- 接口可以继承，别名不能继承, 虽然别名不能继承，但是可以通过`&`实现扩展
+
+```typescript
+interface Animal {
+  name: string;
+}
+
+interface Dog extends Animal {
+  breed: string;
+}
+```
+
+```typescript
+type Animal = {
+  name: string;
+}
+
+type Dog = Animal & {
+  breed: string;
+}
+```
+
+- 接口可以声明合并, 别名不能声明合并
+
+```typescript
+interface Person {
+    name: string;
+    age: number;
+}
+
+interface Person {
+    sex: string
+}
+
+function printPerson(person: Person) {
+    console.log(person.name);
+    console.log(person.age);
+    console.log(person.sex);
+}
+
+printPerson({ name: 'Alice', age: 25, sex: 'female' });
+```
+
+使用接口还是别名，可以根据不同的场景选择, 也可以根据自己的喜好来选择。
+
+## 类型断言
+
+有时候调用方法的时候，回返回多种类型，但是知道在某些情况下必定返回这种类型，那么可以使用`as`关键字进行类型断言。
+
+例如使用`document.getElementById`方法，返回值可能是`HTMLDivElement`类型，也可能是`HTMLCanvasElement`，那么可以使用类型断言来指定类型。
+
+```typescript
+const canvas = document.getElementById('myCanvas') as HTMLCanvasElement;
+const div = document.getElementById('myDiv') as HTMLDivElement;
+```
+
+其实`as`只是告诉编译器，你知道这个变量的类型是什么，但是编译器并不会强制执行这个转换。
+
+```typescript
+const x = "123"
+const y = x as number;
+```
+
+这种写法是错误的，会出现以下错误
+
+```html
+TS2352: Conversion of type string to type number may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to unknown first.
+```
+
+`as`也可以使用两个断言, 例如上面的错误例子想强行不报错，可以这样写
+
+```typescript
+const x = "123"
+const y = x as unknown as number;
+
+console.log(typeof y); // string
+```
+
+虽然这样写不报错，但是输出的`y`是`string`类型，而不是`number`类型。
+
+两个断言其实在`setTimeout`方法中经常用到，例如
+
+```typescript
+const timeoutId: number = setTimeout(() => {
+    console.log('Hello, world!');
+}, 300) as unknown as number;
+```
+
+在`node.js`环境和`浏览器`环境下返回的类型是不一样的，所以可以使用两个断言来指定类型。
+
+
+## 文字类型
+
+文字类型表示一个类型只能有一个值
+
+
