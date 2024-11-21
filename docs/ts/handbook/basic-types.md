@@ -378,6 +378,109 @@ const timeoutId: number = setTimeout(() => {
 
 ## 文字类型
 
-文字类型表示一个类型只能有一个值
+文字类型表示一个类型只能有一个值, 无法进行值的更改, 例如
+
+```typescript
+let x: 12 = 12;
+
+// 文字类型无法赋与其他值
+x = 13
+```
+
+多个文字类型联合组成一个新的类型，达到文字类型值的限制
+
+```typescript
+type MyType = 'input' | 'button' | 'textarea';
+
+function render(type: MyType) {
+  // ...
+}
+
+render('input');
+render('button');
+render('textarea');
+
+// 这样写会报错
+render('other');
+
+const obj = { type: 'input' }
+
+render(obj.type); // 这种也会报错
+render(obj.type as MyType) // 使用类型断言可以解决
 
 
+function request(url: string, method: 'GET' | 'POST' | 'PUT' | 'DELETE') {
+  // ...
+}
+
+const req = { url: 'http://example.com', method: 'GET' }
+
+request(req.url, req.method); // 这种也会报错
+```
+
+这个时候可以继续使用类型断言来指定类型
+
+```typescript
+const req = { url: 'http://example.com', method: 'GET' } as const
+
+request(req.url, req.method);
+```
+
+`as const` 是 TypeScript 中的一种断言方式，表示将这个对象视为一个常量。它使得对象的属性变为只读类型，具体来说：
+
+- url 属性的类型被推断为字面量类型 "https://example.com" 而不是简单的 string。
+
+- method 属性的类型被推断为字面量类型 "GET" 而不是简单的 string。
+
+或者单独给`method`属性指定类型
+
+```typescript
+const req = { url: 'http://example.com', method: 'GET' };
+
+request(req.url, req.method as 'GET')
+```
+
+## 非空断言运算符 !
+
+`!` 运算符告诉 TypeScript，开发者确认 x 绝对不会是 null 或 undefined。
+
+通过加上这个运算符，TypeScript 将不会对该行代码进行可选值检查，认为 x 始终是一个 number 类型
+
+例如如下代码
+
+```typescript
+function liveDangerously(x?: number) {
+    // No error
+    console.log(x!.toFixed());
+}
+```
+
+`liveDangerously`函数的参数`x`是可选参数, 可能是`number`也可能是`undefinde`, 使用非空运算符， 排除了`undefined`的可能性， 所以可以直接使用`toFixed`方法，而不需要做额外的判断, 例如这样写
+
+```typescript
+function liveDangerously(x?: number) {
+  if (x !== undefined) {
+    console.log(x.toFixed());
+  }
+}
+```
+
+在例如如下`vue`组件的`dom`操作中，`!`运算符可以避免`null`和`undefined`的可能性
+
+```vue
+<script setup lang="ts">
+import { onMounted, ref } from 'vue'
+
+const container = ref<HTMLDivElement>();
+
+onMounted(() => {
+  container.value!.innerText = 'hello world'
+})
+</script>
+
+<template>
+  <div ref="container"></div>
+</template>
+```
+
+使用`!`运算符主要是可以少写一些`if`判断, 让代码更加简洁
