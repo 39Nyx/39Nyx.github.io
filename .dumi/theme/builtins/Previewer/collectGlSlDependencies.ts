@@ -3,6 +3,9 @@ import { glslMeta } from '../../utils/glsl';
 export function collectGlSlDependencies(props: any) {
   const { dependencies } = props.asset;
   const filename: string = props.filename;
+  if (!filename) {
+    return {};
+  }
   const urlPrefix = filename.split('/').slice(0, -1).join('/');
   const dependenciesMap: Record<string, { type: string, value: string }> = {};
   if (dependencies) {
