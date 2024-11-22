@@ -100,7 +100,7 @@ Programming，DP）是一种在数学、计算机科学、经济学、管理科�
 
 ### [摘樱桃](https://leetcode-cn.com/problems/cherry-pickup/)
 
-```tsx
+```typescript
 export default () => {
   const cherryPickup = (grid: number[][]): number => {
     const n = grid.length;
