@@ -15,7 +15,6 @@ export async function createMd() {
     }
     const answer = await search({
       message: '选择文件夹',
-      pageSize: directories.length,
       source: async (input, { signal }) => {
         if (!input) {
           return directories.map(item => item.name)
@@ -26,17 +25,22 @@ export async function createMd() {
         }).map(item => item.name)
       },
     })
-    readDir = path.join(readDir, answer)
+    readDir = path.join(readDir, `${answer}`)
   }
   const frontMatter = getFrontMatter(path.join(baseDir, readDir))
+  // 获取所有文件的序号列表
   const orderList = [...new Set(frontMatter.map(item => item.order))].sort((a, b) => a - b)
+  // 获取所有分组的序号列表
   const groupOrderList = [...new Set(frontMatter.map(item => item.group.order))].sort((a, b) => a - b)
+  // 获取所有分组名
   const groupList = frontMatter.map(item => item.group)
   const fileName = await input({ message: '请输入文件名：' })
   const order = await input({
     message: '请输入排序序号：',
     default: orderList[orderList.length - 1] + 1
   })
+  let groupOrder = null
+  // 如果没有分组，则新建分组, 选择分组后自动获取分组排序序号
   let groupTitle = await select({
     message: '选择分组名',
     choices: [
@@ -44,26 +48,17 @@ export async function createMd() {
       '新建分组'
     ]
   })
-  let groupOrder = null
   if (groupTitle === '新建分组') {
     groupTitle = await input({ message: '请输入分组名：' })
   } else {
     groupOrder = groupList.find(item => item.title === groupTitle).order
   }
+  // 如果分组排序序号为空(新建分组)，则输入分组排序序号
   if (groupOrder === null) {
-    groupOrder = await select({
-      message: '选择分组排序序号',
-      choices: [
-        ...groupOrderList,
-        '新建分组'
-      ]
+    groupOrder = await input({
+      message: '请输入分组排序序号：',
+      default: groupOrderList[groupOrderList.length - 1] + 1
     })
-    if (groupOrder === '新建分组') {
-      groupOrder = await input({
-        message: '请输入分组排序序号：',
-        default: groupOrderList[groupOrderList.length - 1] + 1
-      })
-    }
   }
   const newFrontMatter = {
     title: fileName,
@@ -75,9 +70,13 @@ export async function createMd() {
   }
   const newContent = matter.stringify('', newFrontMatter)
   fs.writeFileSync(path.join(baseDir, readDir, `${fileName}.md`), newContent)
-
 }
 
+/**
+ * 获取指定目录下的所有子目录
+ * @param filePath
+ * @return {{name: *, url: string | *}[]}
+ */
 function getDirectories(filePath) {
   const excludeDirs = ['images']
   return fs.readdirSync(filePath)
@@ -91,6 +90,11 @@ function getDirectories(filePath) {
     .filter(source => fs.statSync(source.url).isDirectory())
 }
 
+/**
+ * 获取指定目录下的所有md文件的frontMatter
+ * @param filePath
+ * @return {{[p: string]: any}[]}
+ */
 function getFrontMatter(filePath) {
   return fs.readdirSync(filePath)
     .filter(name => name.endsWith('.md'))

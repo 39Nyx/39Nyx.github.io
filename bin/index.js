@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { program } from "commander"
-import select, { Separator } from '@inquirer/select'
+import select from '@inquirer/select'
 import { createMd } from "./createMd.js"
 
 program
@@ -20,6 +20,8 @@ program
     if (answer === 'create') {
       createMd().then(() => {
         console.log('文件创建成功')
+      }).catch(() => {
+        console.log('文件创建失败')
       })
     }
   })
