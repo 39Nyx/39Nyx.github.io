@@ -20,7 +20,8 @@
     "lint:es": "eslint \"{src,test}/**/*.{js,jsx,ts,tsx}\"",
     "prepare": "husky install && dumi setup",
     "prepublishOnly": "father doctor && npm run build",
-    "start": "npm run dev"
+    "start": "npm run dev",
+    "create": "node ./bin/index.js create"
   },
   "commitlint": {
     "extends": [
@@ -69,15 +70,20 @@
     "@commitlint/cli": "^17.1.2",
     "@commitlint/config-conventional": "^17.1.0",
     "@emotion/babel-preset-css-prop": "^11.11.0",
+    "@inquirer/input": "^4.0.2",
+    "@inquirer/search": "^3.0.2",
+    "@inquirer/select": "^4.0.2",
     "@types/lodash": "^4.17.0",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "@types/sortablejs": "^1.15.8",
     "@umijs/lint": "^4.0.0",
+    "commander": "^12.1.0",
     "dumi": "^2.4.13",
     "dumi-theme-antd-style": "^0.31.1",
     "eslint": "^8.23.0",
     "father": "^4.1.0",
+    "gray-matter": "^4.0.3",
     "husky": "^8.0.1",
     "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",
