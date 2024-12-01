@@ -8,8 +8,8 @@
     "baseUrl": "./",
     "paths": {
       "@@/*": [".dumi/tmp/*"],
-      "hezhijian249": ["src"],
-      "hezhijian249/*": ["src/*", "*"]
+      "39nyx": ["src"],
+      "39nyx/*": ["src/*", "*"]
     }
   },
   "include": [

@@ -72,7 +72,7 @@ export default defineConfig({
         ]
       }
     ],
-    github: 'https://github.com/hezhijian249/hezhijian249.github.io'
+    github: 'https://github.com/39Nyx/39Nyx.github.io'
   },
   html2sketch: {},
   analytics: {

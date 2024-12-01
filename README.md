@@ -1,17 +1,4 @@
-# hezhijian249
-
-[![NPM version](https://img.shields.io/npm/v/hezhijian249.svg?style=flat)](https://npmjs.org/package/hezhijian249)
-[![NPM downloads](http://img.shields.io/npm/dm/hezhijian249.svg?style=flat)](https://npmjs.org/package/hezhijian249)
-
-文档
-
-## Usage
-
-TODO
-
-## Options
-
-TODO
+# 个人博客
 
 ## Development
 
