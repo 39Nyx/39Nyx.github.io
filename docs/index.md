@@ -6,7 +6,7 @@ actions:
   - text: 开始使用
     link: /guide
   - text: Github
-    link: https://github.com/hezhijian249/hezhijian249.github.io
+    link: https://github.com/39Nyx/39Nyx.github.io
     openExternal: true
 
 features:
