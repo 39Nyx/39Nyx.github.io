@@ -5,7 +5,8 @@ export const nav = [
     children: [
       { title: 'JavaScript', link: '/js' },
       { title: 'TypeScript', link: '/ts' },
-      { title: '算法', link: '/algorithm/question/dynamic-programming' }
+      { title: '算法', link: '/algorithm/question/dynamic-programming' },
+      { title: 'css', link: '/css' }
     ]
   },
   {
