@@ -45,6 +45,13 @@ export const nav = [
     ]
   },
   {
+    title: '构建',
+    link: '/build',
+    children: [
+      { title: 'webpack', link: '/webpack' }
+    ]
+  },
+  {
     title: '可视化',
     link: '/visualization',
     children: [
