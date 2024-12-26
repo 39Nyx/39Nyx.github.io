@@ -20,7 +20,7 @@ export default defineConfig({
     baidu: '37f2470d412281b6e20b1ce407956d30'
   },
   headScripts: [
-    'window.EXCALIDRAW_ASSET_PATH = "/draw/";'
+    'window.EXCALIDRAW_ASSET_PATH = "https://registry.npmmirror.com/@excalidraw/excalidraw/0.17.6/files/dist/";'
   ],
   styles: [
     `/styles/global.css`
