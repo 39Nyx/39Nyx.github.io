@@ -41,7 +41,7 @@ export const nav = [
       { title: '拖拽', link: '/react-sortablejs/sortable' },
       { title: 'unoCss', link: '/unoCss' },
       { title: 'bpmnJs', link: '/bpmn-js' },
-      { title: 'axios', link: '/axios'}
+      { title: 'axios', link: '/axios' }
     ]
   },
   {
@@ -61,6 +61,13 @@ export const nav = [
     ]
   },
   {
+    title: '源码',
+    link: '/source',
+    children: [
+      { title: 'Vue3', link: '/vue3-source' }
+    ]
+  },
+  {
     title: '样例',
     link: '/components',
     children: [
@@ -68,4 +75,4 @@ export const nav = [
       { title: 'echarts', link: '/components/line-chart' }
     ]
   }
-]
+];
