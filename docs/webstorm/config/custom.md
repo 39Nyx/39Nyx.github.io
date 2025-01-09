@@ -14,3 +14,27 @@ group:
 可以在“File | Settings | Editor | Inspections | JavaScript and TypeScript | General" -> 取消勾选 "Import can be shortened"
 
 ![](./images/unShortened.png)
+
+## webpack别名
+
+在根目录下创建`alias.config.js`文件，内容如下：
+
+```js
+const resolve = dir => require('path').join(__dirname, dir);
+
+module.exports = {
+  resolve: {
+    alias: {
+      '@': resolve('./src')
+    }
+  }
+};
+```
+
+:::tip 提示
+文件名叫啥都可以, 不一定要叫`alias.config.js`
+:::
+
+选择`File -- Settings -- Languages & Frameworks -- JavaScript -- Webpack`, 选择`Manually`, 然后再选择刚刚创建的`alias.config.js`文件
+
+![](./images/alias.png)
