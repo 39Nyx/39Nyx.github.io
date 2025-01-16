@@ -37,8 +37,6 @@ const person = {
 
 这种方式叫显示定义对象, 这个例子和上面的例子是等价的, 他们的属性和方法都一样.
 
-
-
 ## 属性的类型
 
 在`JavaScript`中，属性可以分为两种基本类型: `数据属性`和`访问器属性`
@@ -48,32 +46,6 @@ const person = {
 数据属性包含一个保存数据值的位置, 值会从这个位置读取, 也会写入到这个位置，数据属性有四个特性描述他们的行为
 
 - [[Configurable]]: 表示属性是否可以通过`delete`删除并重新定义, 是否可以修改他的特性, 以及是否可以把它改为访问器属性.默认情况下都是`true`
-
-```javascript
-let obj = {
-  name: 'Alice'
-};
-
-// 将 'name' 属性定义为可配置的
-Object.defineProperty(obj, 'name', {
-  configurable: true
-});
-
-// 将 'name' 属性从数据属性改为访问器属性
-Object.defineProperty(obj, 'name', {
-  get: function() {
-    return 'Hello, ' + name;
-  },
-  set: function(value) {
-    name = value;
-  }
-});
-
-console.log(obj.name); // 输出: Hello, Alice
-obj.name = 'Bob';
-console.log(obj.name); // 输出: Hello, Bob
-```
-
 - [[Enumerable]]: 表示属性是否可以通过`for...in`循环遍历, 默认情况下都是`true`
 - [[Writable]]: 表示属性是否可以被修改, 默认情况下都是`true`
 - [[Value]]: 表示属性的值, 默认是`undefined`
@@ -116,7 +88,7 @@ Object.defineProperty(obj1, 'name', {
     configurable: true
 })
 
-// configurable设置为true时，可以删除属性
+// configurable设置为true时，可以删除属性，如果设置为false, 那么delete将会报错
 delete obj1.name
 
 const obj2 = {}
@@ -131,32 +103,83 @@ Object.defineProperty(obj2, 'name', {
 delete obj2.name
 ```
 
-#### 修改属性的特性
+修改属性的特性
 
 ```javascript
 const obj1 = {}
 
 Object.defineProperty(obj1, 'name', {
-    value: 'nyx',
-    writable: true,
-    enumerable: true,
-    configurable: true
+  value: 'nyx',
+  writable: true,
+  enumerable: true,
+  configurable: true
 })
 
 console.log(obj1.name) // nyx
 obj1.name = '39'
 
+// configurable设置为true时，可以修改属性的特性
 Object.defineProperty(obj1, 'name', {
-    writable: false,
+  writable: false,
+  enumerable: true,
+  configurable: false
+})
+console.log(obj1.name) // 39
+try {
+  obj1.name = '39 + 1'
+} catch (e) {
+  console.error(e) // object.js:20 Uncaught TypeError: Cannot assign to read only property 'name' of object '#<Object>'
+}
+
+try {
+  // confiurable设置为false时，不能修改属性的特性, 会抛出Uncaught TypeError: Cannot redefine property: name错误
+  Object.defineProperty(obj1, 'name', {
+    writable: true,
     enumerable: true,
     configurable: false
-})
-
-console.log(obj1.name) // 39
-obj1.name = '39 + 1' // object.js:20 Uncaught TypeError: Cannot assign to read only property 'name' of object '#<Object>'
+  })
+} catch (e) {
+  console.error(e) // object.js:26 Uncaught TypeError: Cannot redefine property: name
+}
 ```
 
+:::info 注意
+`configurable`设置为`false`时, 可以从`writable`属性从`true`改为`false`, 但是不能从`false`改为`true`
+但是`enumerable`属性无论是从`true`改为`false`还是从`false`改为`true`, 都不可以.
+:::
 
+把属性改为访问器属性
+
+```javascript
+const obj = {
+  name: 'nyx'
+}
+
+Object.defineProperty(obj, 'name', {
+  value: 'hello',
+  writable: true,
+  enumerable: true,
+  configurable: true
+})
+
+// 只有在 configurable 为 true 时，才能修改属性的特性, 为 false 时，无法修改
+Object.defineProperty(obj, 'name', {
+  configurable: true,
+  get: function () {
+    return `${this._name} 是从访问器里面获取的`
+  },
+  set: function (value) {
+    // console.log(`设置name属性为 ${value}`)
+    this._name = value
+  }
+})
+
+console.log(obj.name)
+obj.name = 'lucy'
+console.log(obj.name)
+```
+
+#### [[Writable]]
 
 在将`writable`设置为`false`后, 这个属性就不能被修改了, 如果修改了就会报错:
 
@@ -171,62 +194,41 @@ Object.defineProperty(person, 'name', {
 person.name = 'lucy' // Uncaught TypeError: Cannot assign to read only property 'name' of object '#<Object>'
 ```
 
-在将`configurable`设置为`false`后, 这个属性就不能被删除了, 如果删除了就会报错:
+#### [[Enumerable]]
+
+`enumerable`属性表示属性是否可以通过`for...in`循环遍历, 默认是`true`, 如果设置为`false`, 那么这个属性就不会被`for...in`循环遍历到.
 
 ```javascript
-const person = new Object()
-Object.defineProperty(person, 'name', {
-    value: 'nyx',
-    writable: true,
-    enumerable: true,
-    configurable: false
-})
+const obj = {
+}
 
-delete person.name // This will delete the property 'name' from the object 'person'
-```
-
-针对`[[configurable]]`特性, 如果设置为了`false`，那么不能在重新使用`Object.defineProperty()`方法来修改这个属性的特性, 修改了会报错
-
-```javascript
-const person = new Object()
-Object.defineProperty(person, 'name', {
-    value: 'nyx',
-    writable: true,
-    enumerable: true,
-    configurable: false
-})
-
-Object.defineProperty(person, 'name', {
+Object.defineProperty(obj, 'name', {
     value: 'nyx',
     writable: true,
     enumerable: true,
     configurable: true
 })
 
-// Uncaught TypeError: Cannot redefine property: name
-```
 
-并且定义了`[[configurable]]`为false，即使再次使用`Object.defineProperty()`, 修改`[[writable]]`在一些情况下
-是可以的，一些情况下是不行的, `[[enumerable]]`也是无法更改的
+// 在enumerable为true的情况下，可以通过for...in循环遍历对象的所有可枚举属性
+for (let key in obj) {
+    console.log(key, obj[key])
+}
 
-```javascript
-// writable: false ---> true 这种不行, true ---> false 这种可以
-const person = new Object()
-Object.defineProperty(person, 'name', {
-  value: 'nyx',
-  writable: false,
-  enumerable: true,
-  configurable: false
+Object.defineProperty(obj, 'name', {
+    value: 'nyx2',
+    enumerable: false,
+    writable: true,
+    configurable: true
 })
 
-Object.defineProperty(person, 'name', {
-  value: 'nyx',
-  writable: true,
-  enumerable: true,
-  configurable: false
-})
+obj.age = 18
 
-// Uncaught TypeError: Cannot redefine property: name
+// 遍历对象时，只会遍历enumerable为true的属性, name被设置为了false，所以不会被遍历到
+for (let key in obj) {
+    // 这里只会打印age属性
+    console.log(key, obj[key])
+}
 ```
 
 ### 访问器属性
