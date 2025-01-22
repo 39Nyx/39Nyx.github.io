@@ -6,3 +6,5 @@ node_modules
 .dumi/theme/utils/glsl.ts
 .DS_Store
 .idea
+docs-dist
+.vercel
