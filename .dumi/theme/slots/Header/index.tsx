@@ -1,9 +1,8 @@
 import React, { memo, useEffect } from 'react';
 import { Flexbox } from 'react-layout-kit';
 
-import LangSwitch from 'dumi/theme-default/slots/LangSwitch';
 import Logo from 'dumi/theme-default/slots/Logo';
-import Navbar from 'dumi/theme-default/slots/Navbar';
+import Navbar from '../Navbar/index';
 import SearchBar from 'dumi/theme-default/slots/SearchBar';
 
 import Burger from '../../components/Burger';
@@ -74,7 +73,6 @@ const Header: React.FC = () => {
                 className="dumi-default-header-right-aside"
               >
                 <SearchBar />
-                <LangSwitch />
                 <GithubButton />
                 <Switcher />
               </Flexbox>
