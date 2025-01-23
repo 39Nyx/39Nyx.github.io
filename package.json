@@ -65,6 +65,7 @@
     "sortablejs": "^1.15.6",
     "styled-components": "^6.1.14",
     "three": "^0.168.0",
+    "use-merge-value": "^1.2.0",
     "zustand": "^4.5.6"
   },
   "devDependencies": {
