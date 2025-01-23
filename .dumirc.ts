@@ -29,7 +29,7 @@ export default defineConfig({
     'window.EXCALIDRAW_ASSET_PATH = "https://registry.npmmirror.com/@excalidraw/excalidraw/0.17.6/files/dist/";',
     process.env.NODE_ENV !== 'development' ? `;(function () {
       console.log('hello world')
-      if (('serviceWorker' in navigator)) {
+      if (!('serviceWorker' in navigator)) {
         console.log('Service workers not supported.')
         return
       }
