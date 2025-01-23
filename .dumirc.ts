@@ -34,7 +34,7 @@ export default defineConfig({
         return
       }
       window.addEventListener('load', function () {
-        var e = 'https://39nyx.cn/service-worker.js?v=${Date.now()}'
+        var e = 'https://www.39nyx.cn/service-worker.js?v=${Date.now()}'
         console.log('navigator', navigator)
         navigator.serviceWorker
           .register(e)
