@@ -140,3 +140,7 @@ export default defineConfig({
 :::info{title=注意}
 只有在`https`协议下才能使用`serviceWorker`，所以你需要确保你的网站部署在`https`协议下。本地开发环境下，`serviceWorker`不会生效，也可能是我配置的有问题。
 :::
+
+## 参考
+
+- [github issue 10403](https://github.com/umijs/umi/discussions/10403)
