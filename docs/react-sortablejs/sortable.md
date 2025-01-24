@@ -8,8 +8,37 @@ order: 1
 
 安装 `react-sortablejs` 和 `sortablejs` 依赖。
 
-<InstallDependencies npm='$ npm install react-sortablejs sortablejs ' yarn='$ yarn add react-sortablejs sortablejs' pnpm='$ pnpm add react-sortablejs sortablejs '></InstallDependencies>
+:::code-group
+
+```shell [pnpm]
+$ pnpm add react-sortablejs sortablejs
+```
+
+```shell [yarn]
+$ yarn add react-sortablejs sortablejs
+```
+
+```shell [npm]
+$ npm install react-sortablejs sortablejs
+```
+
+:::
+
 
 再安装 `sortablejs` 的类型定义文件 `@types/sortablejs`。
 
-<InstallDependencies npm='$ npm install @types/sortablejs -D' yarn='$ yarn add @types/sortablejs -D' pnpm='$ pnpm add @types/sortablejs -D'></InstallDependencies>
+:::code-group
+
+```shell [pnpm]
+$ pnpm add @types/sortablejs -D
+```
+
+```shell [yarn]
+$ yarn add @types/sortablejs -D
+```
+
+```shell [npm]
+$ npm install @types/sortablejs -D
+```
+
+:::

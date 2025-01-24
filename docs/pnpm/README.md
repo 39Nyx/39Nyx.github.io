@@ -7,4 +7,6 @@ order: 0
 
 使用 npm 安装
 
-<InstallDependencies npm='$ npm install -g pnpm'></InstallDependencies>
+```shell [pnpm]
+$ npm install -g pnpm
+```

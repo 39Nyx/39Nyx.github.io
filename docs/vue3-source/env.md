@@ -38,7 +38,6 @@ packages:
 }
 ```
 
-
 ```json [reactivity/package.json]
 {
   "name": "@vue/reactivity",

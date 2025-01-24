@@ -99,7 +99,9 @@ export default (api: IApi) => {
 
 由于我使用的是`pnpm workspace`，所以不发布插件，也可以直接在项目中安装插件：
 
-<InstallDependencies pnpm="$ pnpm add --filter foo --workspace bar"></InstallDependencies>
+```shell [pnpm]
+$ pnpm add --filter foo --workspace bar
+```
 
 其中`bar`是插件名，`foo`是项目名。更多`pnpm workspace`相关命令请参考[官方文档](https://pnpm.io/workspaces)。
 
