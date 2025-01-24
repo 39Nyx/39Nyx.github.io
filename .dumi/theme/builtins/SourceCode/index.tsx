@@ -4,16 +4,27 @@ import OriginSourceCode, {
 import * as monaca from 'monaco-editor';
 import React, { useEffect, useRef } from 'react';
 import { useStyles } from './style';
+import { Tabs } from "antd";
+import { LanguageIcon } from "../../components/languageIcon";
 
 interface SourceCodeProps extends ISourceCodeProps {
   monacoEditor?: boolean;
 }
 
 const SourceCode: React.FC<SourceCodeProps> = (props) => {
-  const simpleLanguages: string[] = ['text', 'shell'];
   const { styles } = useStyles();
   if (!props.monacoEditor) {
-    return <OriginSourceCode {...props}>{props.children}</OriginSourceCode>;
+    if (props.title) {
+      const items = [
+        {
+          key: props.title,
+          label: <LanguageIcon name={ props.title }/>,
+          children: <OriginSourceCode { ...props }>{ props.children }</OriginSourceCode>,
+        }
+      ]
+      return <Tabs items={ items }/>;
+    }
+    return <OriginSourceCode { ...props }>{ props.children }</OriginSourceCode>;
   }
   const lineCount: number = props.children.split('\n').length;
   const languageMap: any = {
@@ -67,11 +78,11 @@ const SourceCode: React.FC<SourceCodeProps> = (props) => {
   const height = lineCount * 18 + 20;
   return (
     <pre
-      style={{
-        height: `${height > 500 ? 500 : height}px`,
+      style={ {
+        height: `${ height > 500 ? 500 : height }px`,
         marginTop: 0,
-      }}
-      ref={ref}
+      } }
+      ref={ ref }
     ></pre>
   );
 };
