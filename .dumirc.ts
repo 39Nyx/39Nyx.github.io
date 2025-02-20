@@ -7,7 +7,7 @@ export default defineConfig({
   outputPath: 'docs-dist',
   themeConfig: {
     name: ' ',
-    logo: 'https://gw.alipayobjects.com/zos/hitu-asset/c88e3678-6900-4289-8538-31367c2d30f2/hitu-1609235995955-image.png',
+    logo: '/assets/images/AntDesign.png',
     lastUpdated: true,
     showLineNum: true,
     nav: nav,
@@ -63,7 +63,7 @@ export default defineConfig({
     `/styles/global.css`
   ],
   favicons: [
-    'https://gw.alipayobjects.com/zos/hitu-asset/c88e3678-6900-4289-8538-31367c2d30f2/hitu-1609235995955-image.png'
+    '/assets/images/AntDesign.png'
   ],
   chainWebpack(memo) {
     memo.plugin('monaco').use(new MonacoWebpackPlugin());
