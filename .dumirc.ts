@@ -62,6 +62,9 @@ export default defineConfig({
   styles: [
     `/styles/global.css`
   ],
+  codeSplitting: {
+    jsStrategy: 'depPerChunk'
+  },
   favicons: [
     '/assets/images/AntDesign.png'
   ],
@@ -79,6 +82,7 @@ export default defineConfig({
           // 这里 exclude 的区别：通常来说 workbox 插件会自动识别 webpack 产物列表，然后自动添加产物的那些文件到 cache 列表中，你可以在 service-worker.js 这个产物中看到缓存文件列表，此时配 exclude: [/\.html/] 只排除 html 就行了。
           exclude: [/\.html/]
         }
+
       ])
     }
     return memo;
