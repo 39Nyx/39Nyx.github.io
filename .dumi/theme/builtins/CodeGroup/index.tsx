@@ -14,10 +14,8 @@ const CodeGroup: React.FC<PropsWithChildren> = (props) => {
   const usefulChildren = toArray(children).filter(
     (child: any) =>
       typeof child === 'object' &&
-      typeof child.type === 'function' &&
-      child.type?.name === SourceCode.name,
+      typeof child.type === 'function',
   ) as ReactElement<ISourceCodeProps>[];
-  console.log('code group 打包后输出')
 
   const items: TabsProps['items'] = usefulChildren.map<Item>((child, idx) => {
     const { lang, title } = child.props ?? {};
