@@ -70,6 +70,15 @@ export const nav = [
     ]
   },
   {
+    title: '运维',
+    link: '/operation',
+    children: [
+      { title: 'docker', link: '/docker' },
+      { title: 'k8s', link: '/k8s' },
+      { title: 'guacamole', link: '/guacamole' }
+    ]
+  },
+  {
     title: '样例',
     link: '/components',
     children: [
