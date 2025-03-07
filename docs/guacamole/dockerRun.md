@@ -5,6 +5,23 @@ order: 1
 
 ## docker-compose
 
+使用`docker-compose`运行，得先生成初始化数据库文件
+
+```shell
+docker run --rm guacamole/guacamole /opt/guacamole/bin/initdb.sh --mysql > initdb.sql
+```
+
+将`initdb.sql`文件放到`initdb`目录下
+
+具体目录结构如下
+
+```html
+.
+├── docker-compose.yaml
+├── initdb
+    ├── initdb.sql
+```
+
 ```yaml
 version: '3'
 
@@ -54,12 +71,6 @@ volumes:
 
 networks:
   guacamole_net:
-```
-
-生成初始化数据库文件
-
-```shell
-docker run --rm guacamole/guacamole /opt/guacamole/bin/initdb.sh --mysql > initdb.sql
 ```
 
 启动所有服务
