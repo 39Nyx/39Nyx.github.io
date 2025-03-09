@@ -87,4 +87,7 @@ export default defineConfig({
     }
     return memo;
   },
+  plugins: [
+    require.resolve('./plugin/medium-zoom.ts')
+  ]
 });
