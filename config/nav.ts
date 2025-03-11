@@ -7,7 +7,7 @@ export const nav = [
       { title: 'TypeScript', link: '/ts' },
       { title: '算法', link: '/algorithm/question/dynamic-programming' },
       { title: 'css', link: '/css' },
-      { title: 'nodeJs', link: '/node-js'}
+      { title: 'nodeJs', link: '/node-js' }
     ]
   },
   {
@@ -50,6 +50,7 @@ export const nav = [
     link: '/build',
     children: [
       { title: 'webpack', link: '/webpack' },
+      { title: 'rollup', link: '/rollup' },
       { title: 'vite', link: '/vite' }
     ]
   },
