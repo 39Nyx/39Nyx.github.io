@@ -3,7 +3,7 @@ title: tsconfig.json
 order: 1
 group:
   title: 配置
-  order: 4
+  order: 6
 ---
 
 ## 简介
