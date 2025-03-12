@@ -2,7 +2,7 @@
 title: 类型工具
 order: 3
 group:
-  title: 类型工具
+  title: 类型操作
 ---
 TypeScript 提供了一些内置的类型工具，用来方便地处理各种类型，以及生成新的类型。
 
