@@ -4,6 +4,7 @@ export const nav = [
     link: '/basic',
     children: [
       { title: 'JavaScript', link: '/js' },
+      { title: 'es6', link: '/es6' },
       { title: 'TypeScript', link: '/ts' },
       { title: '算法', link: '/algorithm/question/dynamic-programming' },
       { title: 'css', link: '/css' },
