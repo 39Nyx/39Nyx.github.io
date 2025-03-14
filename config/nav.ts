@@ -86,13 +86,5 @@ export const nav = [
     children: [
       { title: 'springBoot', link: '/spring-boot' }
     ]
-  },
-  {
-    title: '样例',
-    link: '/components',
-    children: [
-      { title: 'ant', link: '/components/pro-layout' },
-      { title: 'echarts', link: '/components/line-chart' }
-    ]
   }
 ];
