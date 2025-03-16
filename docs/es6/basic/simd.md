@@ -1,5 +1,6 @@
 ---
 title: SIMD
+order: 10
 group:
   title: 基础
 ---

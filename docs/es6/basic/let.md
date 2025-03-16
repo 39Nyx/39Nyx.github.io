@@ -3,7 +3,7 @@ title: let 和 const 命令
 order: 1
 group:
   title: 基础
-  order: 2
+  order: 1
 ---
 
 ## let 命令

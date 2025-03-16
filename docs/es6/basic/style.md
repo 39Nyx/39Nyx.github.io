@@ -1,6 +1,6 @@
 ---
 title: 编程风格
-order: 3
+order: 10
 group:
   title: 基础
 ---

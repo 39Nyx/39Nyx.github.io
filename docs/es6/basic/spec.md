@@ -1,5 +1,6 @@
 ---
 title: 读懂 ECMAScript 规格
+order: 10
 group:
   title: 基础
 ---

@@ -1,5 +1,6 @@
 ---
 title: 函数式编程
+order: 10
 group:
   title: 基础
 ---
