@@ -38,17 +38,26 @@ group:
 
 5. `6`比`3`大,`6`往后移动一位,`5`比`3`大,`5`往后移动一位,因为到了最前面,将`3`放到第一位
 
-6. 以此类推
+6. 依次类推
 
-## 图解
+## 可视化
 
-图片来源(维基百科)
+```jsx
+import { InsertionSort } from '39nyx';
 
-![](./img/Insertion-sort-example-300px.gif)
+export default () => <InsertionSort />
+```
 
 ## 代码实现
 
-```java
+:::code-group
+
+```javascript [js]
+
+```
+
+
+```java [java]
 package com.hzj.sort;
 
 /**
@@ -81,5 +90,5 @@ public class InsertSort {
         }
     }
 }
-
 ```
+:::
