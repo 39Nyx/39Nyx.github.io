@@ -1,5 +1,6 @@
 ---
 title: Mixin
+order: 9
 group:
   title: 面向对象编程
 ---

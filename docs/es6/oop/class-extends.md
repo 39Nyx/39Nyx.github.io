@@ -1,5 +1,6 @@
 ---
 title: Class 的继承
+order: 2
 group:
   title: 面向对象编程
 ---

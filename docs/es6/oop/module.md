@@ -1,5 +1,6 @@
 ---
 title: Module 的语法
+order: 3
 group:
   title: 面向对象编程
 ---

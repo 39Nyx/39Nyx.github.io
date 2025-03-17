@@ -1,5 +1,6 @@
 ---
 title: 字符串的新增方法
+order: 2
 group:
   title: 数据类型
 ---

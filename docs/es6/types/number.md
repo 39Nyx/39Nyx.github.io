@@ -1,5 +1,6 @@
 ---
 title: 数值的扩展
+order: 4
 group:
   title: 数据类型
 ---

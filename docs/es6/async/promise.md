@@ -1,5 +1,6 @@
 ---
 title: Promise 对象
+order: 1
 group:
   title: 异步
 ---

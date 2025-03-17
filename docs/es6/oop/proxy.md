@@ -1,5 +1,6 @@
 ---
 title: Proxy
+order: 5
 group:
   title: 面向对象编程
 ---

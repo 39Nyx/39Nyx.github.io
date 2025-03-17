@@ -1,5 +1,6 @@
 ---
 title: 装饰器
+order: 7
 group:
   title: 面向对象编程
 ---

@@ -1,8 +1,8 @@
 ---
 title: 运算符的扩展
-order: 10
+order: 9
 group:
-  title: 基础
+  title: 数据类型
 ---
 
 本章介绍 ES6 后续标准添加的一些运算符。

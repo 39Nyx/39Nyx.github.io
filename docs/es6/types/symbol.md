@@ -1,5 +1,6 @@
 ---
 title: Symbol
+order: 11
 group:
   title: 数据类型
 ---

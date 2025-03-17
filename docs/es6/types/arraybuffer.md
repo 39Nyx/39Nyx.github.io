@@ -1,5 +1,6 @@
 ---
 title: ArrayBuffer
+order: 12
 group:
   title: 数据类型
 ---

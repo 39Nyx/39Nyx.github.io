@@ -1,5 +1,6 @@
 ---
 title: 对象的扩展
+order: 7
 group:
   title: 数据类型
 ---

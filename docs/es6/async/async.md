@@ -1,8 +1,9 @@
 ---
 title: async 函数
+order: 5
 group:
   title: 异步
-  order: 5
+  order: 4
 ---
 
 ## 含义

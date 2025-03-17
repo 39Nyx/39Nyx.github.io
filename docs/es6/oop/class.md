@@ -1,8 +1,9 @@
 ---
 title: Class 的基本语法
+order: 1
 group:
   title: 面向对象编程
-  order: 4
+  order: 5
 ---
 
 ## 类的由来

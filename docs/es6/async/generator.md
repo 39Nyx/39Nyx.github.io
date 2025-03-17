@@ -1,5 +1,6 @@
 ---
 title: Generator 函数的语法
+order: 3
 group:
   title: 异步
 ---

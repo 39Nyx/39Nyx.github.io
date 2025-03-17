@@ -1,5 +1,6 @@
 ---
 title: 函数的扩展
+order: 5
 group:
   title: 数据类型
 ---

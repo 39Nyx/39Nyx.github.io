@@ -1,5 +1,6 @@
 ---
 title: 字符串的扩展
+order: 1
 group:
   title: 数据类型
 ---

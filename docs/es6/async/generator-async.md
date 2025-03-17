@@ -1,5 +1,6 @@
 ---
 title: Generator 函数的异步应用
+order: 4
 group:
   title: 异步
 ---

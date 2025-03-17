@@ -1,5 +1,6 @@
 ---
 title: 对象的新增方法
+order: 8
 group:
   title: 数据类型
 ---

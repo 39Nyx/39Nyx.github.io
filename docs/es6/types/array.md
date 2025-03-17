@@ -1,5 +1,6 @@
 ---
 title: 数组的扩展
+order: 6
 group:
   title: 数据类型
   order: 3

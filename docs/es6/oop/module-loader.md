@@ -1,5 +1,6 @@
 ---
 title: Module 的加载实现
+order: 4
 group:
   title: 面向对象编程
 ---
