@@ -1,6 +1,8 @@
-import OriginSourceCode, {
+import {
   ISourceCodeProps,
 } from 'dumi/theme-default/builtins/SourceCode';
+import OriginSourceCode from 'dumi-theme-antd-style/dist/builtins/SourceCode'
+
 import * as monaca from 'monaco-editor';
 import React, { useEffect, useRef } from 'react';
 import { useStyles } from './style';
