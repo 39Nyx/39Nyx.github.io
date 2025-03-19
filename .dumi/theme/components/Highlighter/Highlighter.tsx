@@ -45,7 +45,7 @@ const SyntaxHighlighter: React.FC<SyntaxHighlighterProps> = memo<SyntaxHighlight
             {loading && (
               <Center horizontal gap={8} className={styles.loading}>
                 <Loading spin style={{ color: theme.colorTextTertiary }} />
-                shiki 着色器准备中...
+                着色器准备中...
               </Center>
             )}
           </>
