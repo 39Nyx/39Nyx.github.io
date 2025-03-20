@@ -1,39 +1,55 @@
 import React, { useState, useEffect } from 'react';
 import { SortingAlgorithm } from '../../../models/SortingAlgorithm';
-import BubbleSortVisualizer from '../Sorting/BubbleSortVisualizer';
 import BubbleSortControls from '../Sorting/BubbleSortControls';
 import { ExecutionStatistics } from "39nyx/modules/Algorithms/Components/Algorithms/components/ExecutionStatistics";
 import { AlgorithmComplexity } from "39nyx/modules/Algorithms/Components/Algorithms/components/AlgorithmComplexity";
+import { SortVisualizer } from "39nyx/modules/Algorithms/Components/Algorithms/components/SortVisualizer";
 
 const SelectionSort: React.FC = () => {
   const [sortingAlgorithm] = useState(() => new SortingAlgorithm());
   const [state, setState] = useState(() => sortingAlgorithm.getState());
   const [isSorting, setIsSorting] = useState(false);
+  const [messages, setMessages] = useState<string[]>([]);
+
+  /**
+   * 生成随机数组
+   * @param size
+   */
+  const handleGenerateArray = (size: number) => {
+    sortingAlgorithm.generateRandomArray(size);
+  };
 
   useEffect(() => {
-    // 生成初始数组
-    handleGenerateArray(10);
-
     // 订阅状态更新
     const unsubscribe = sortingAlgorithm.subscribe((newState) => {
       setState(newState);
+      if (newState.message) {
+        messages.unshift(newState.message)
+        setMessages(messages)
+      }
     });
+
+    // 生成初始数组
+    handleGenerateArray(10);
 
     return () => {
       unsubscribe();
     };
   }, [sortingAlgorithm]);
 
+  /**
+   * 开始排序
+   */
   const handleSort = async () => {
     setIsSorting(true);
     await sortingAlgorithm.selectionSort();
     setIsSorting(false);
   };
 
-  const handleGenerateArray = (size: number) => {
-    sortingAlgorithm.generateRandomArray(size);
-  };
-
+  /**
+   * 设置动画延迟
+   * @param delay
+   */
   const handleSetDelay = (delay: number) => {
     sortingAlgorithm.setDelay(delay);
   };
@@ -49,15 +65,8 @@ const SelectionSort: React.FC = () => {
 
   return (
     <div className="max-w-6xl mx-auto p-6">
-      <h2 className="text-2xl font-bold mb-6">选择排序可视化</h2>
-
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="lg:col-span-2">
-          <BubbleSortVisualizer
-            array={ state.array }
-          />
-        </div>
-
+      <SortVisualizer array={ state.array }/>
+      <div>
         <div>
           <BubbleSortControls
             onSort={ handleSort }
@@ -65,10 +74,7 @@ const SelectionSort: React.FC = () => {
             onSetDelay={ handleSetDelay }
             isSorting={ isSorting }
           />
-        </div>
-
-        <div>
-          {/*算法复杂度说明*/}
+          {/*算法复杂度说明*/ }
           <AlgorithmComplexity
             dataSource={ algorithmComplexityData }
           />
@@ -76,16 +82,10 @@ const SelectionSort: React.FC = () => {
           <ExecutionStatistics
             comparisons={ state.comparisons }
             swaps={ state.swaps }
+            messages={ messages }
           />
         </div>
       </div>
-
-      {/* 操作提示 */ }
-      { state.message && (
-        <div className="mt-4 p-2 bg-blue-100 text-blue-700 rounded">
-          { state.message }
-        </div>
-      ) }
     </div>
   );
 };
