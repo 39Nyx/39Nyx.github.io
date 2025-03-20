@@ -10,11 +10,24 @@ interface ExecutionStatisticsProps {
    * 交换次数
    */
   swaps: number;
+
+  /**
+   * 消息历史
+   */
+  messages: string[];
 }
 
 export const ExecutionStatistics: React.FC<ExecutionStatisticsProps> = (props) => {
-  const { comparisons, swaps } = props;
+  const { comparisons, swaps, messages } = props;
   const { styles } = useStyles()
+
+  const messageRender = messages.map(item => {
+    return (
+      <div className={styles.messageItem} key={item}>
+        { item }
+      </div>
+    )
+  })
   return (
     <div className={styles.container}>
       <h4 className={styles.title}>执行统计</h4>
@@ -27,6 +40,9 @@ export const ExecutionStatistics: React.FC<ExecutionStatisticsProps> = (props) =
           <span className={styles.text}>交换次数:</span>
           <span className={styles.value}>{ swaps }</span>
         </div>
+      </div>
+      <div className={styles.messageContainer}>
+        { messageRender }
       </div>
     </div>
   )

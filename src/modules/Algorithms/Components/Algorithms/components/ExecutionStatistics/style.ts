@@ -30,6 +30,17 @@ export const useStyles = createStyles((theme) => {
     value: css`
       margin-left: 0.5rem /* 8px */;
       font-weight: 600;
+    `,
+    messageContainer: css`
+      max-height: 260px;
+      overflow-y: auto;
+    `,
+    messageItem: css`
+      cursor: pointer;
+      margin-bottom: 0.5rem /* 8px */;
+      &:hover {
+        color: #1d4ed8;
+      }
     `
   }
 })
