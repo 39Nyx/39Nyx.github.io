@@ -36,9 +36,7 @@ export const AlgorithmComplexity: React.FC<AlgorithmComplexityProps> = ({ dataSo
       search={ false }
       dataSource={dataSource}
       pagination={false}
-      options={{
-        reload: false
-      }}
+      options={false}
       cardProps={{
         bodyStyle: {
           paddingInline: 0
