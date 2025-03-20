@@ -30,6 +30,14 @@ group:
 
 ![](./img/Selection-Sort-Animation.gif)
 
+## 可视化
+
+```jsx
+import { SelectionSort } from '39nyx'
+
+export default () => <SelectionSort />
+```
+
 ## 代码实现
 
 ```java
