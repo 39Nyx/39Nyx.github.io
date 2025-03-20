@@ -94,12 +94,6 @@ const BubbleSortControls: React.FC<BubbleSortControlsProps> = (props) => {
           开始排序
         </Button>
       </Space>
-
-      { isSorting && (
-        <div className="text-center text-blue-600">
-          排序进行中...
-        </div>
-      ) }
     </div>
   );
 };
