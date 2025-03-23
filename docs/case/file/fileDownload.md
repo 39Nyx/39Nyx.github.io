@@ -2,8 +2,8 @@
 title: 文件下载
 order: 1
 group:
-  title: 案例
-  order: 10
+  title: 文件
+  order: 1
 ---
 
 以下是使用 `axios` 发送请求并生成文件下载的完整代码示例，包含详细注释和常见场景处理：
