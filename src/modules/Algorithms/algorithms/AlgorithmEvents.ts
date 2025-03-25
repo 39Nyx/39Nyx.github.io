@@ -62,9 +62,7 @@ export class AlgorithmEvents {
    */
   async compare(i: number, j: number): Promise<boolean> {
     this.comparisons++;
-    this.array[i].state = 'comparing';
-    this.array[j].state = 'comparing';
-    this.notify(`比较元素 ${this.array[i].value} 和 ${this.array[j].value}`);
+    this.notify(`比较元素 ${this.array[i].value} 和 ${this.array[j].value}的大小`);
     await this.wait();
 
     return this.array[i].value > this.array[j].value;
@@ -79,7 +77,6 @@ export class AlgorithmEvents {
     this.swaps++;
     this.array[i].state = 'swapping';
     this.array[j].state = 'swapping';
-    this.notify(`交换元素 ${this.array[i].value} 和 ${this.array[j].value}`);
     await this.wait();
 
     const temp = this.array[i];
@@ -116,5 +113,20 @@ export class AlgorithmEvents {
 
   async sort() {
     // 子类实现具体的排序算法
+  }
+
+  /**
+   * 切换基准元素动画
+   */
+  async togglePivotElementAnimation(index: number) {
+    this.array[index].state = 'pivot';
+    await this.wait(200);
+    this.array[index].state = 'default';
+    await this.wait(200);
+    this.array[index].state = 'pivot';
+    await this.wait(200);
+    this.array[index].state = 'default';
+    await this.wait(200);
+    this.array[index].state = 'pivot';
   }
 }

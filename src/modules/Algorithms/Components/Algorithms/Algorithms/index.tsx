@@ -62,6 +62,7 @@ export const Algorithms: React.FC<{
 
   return (
     <div className="max-w-6xl mx-auto p-6">
+      {/*可视化排序演示*/}
       <SortVisualizer array={ state.array }/>
       <div>
         <div>
