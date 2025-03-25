@@ -1,6 +1,19 @@
 export interface ArrayElement {
   value: number;
-  state: 'default' | 'comparing' | 'sorted' | 'swapping' | 'pivot' | 'current' | 'subarray' | 'heap' | 'counting' | 'bucket' | 'radix';
+  /**
+   * default: 未被标记的元素
+   * comparing: 正在比较的元素
+   * sorted: 已排序的元素
+   * swapping: 正在交换的元素
+   * pivot: 基准元素
+   * current: 当前元素
+   * subarray: 子序列元素
+   * heap: 堆元素
+   * counting: 计数排序元素
+   * bucket: 桶排序元素
+   * radix: 基数排序元素
+   */
+  state: 'default' | 'comparing' | 'sorted' | 'swapping' | 'pivot' | 'current' | 'subarray' | 'heap' | 'counting' | 'bucket' | 'radix' | 'result';
 }
 
 export interface SortingState {
