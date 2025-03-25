@@ -28,15 +28,18 @@ export const SortVisualizer: React.FC<SortVisualizerProps> = ({ array }) => {
     debugger
     const getBarColor = (state: ArrayElement['state']) => {
       switch (state) {
-        // ffb980
         case 'comparing':
-          return '#faad14';
-        case 'swapping':
+          return '#1677ff'
+        case 'current':
+          return '#1677ff';
+        case 'pivot':
           return '#ff4d4f';
         case 'sorted':
           return '#73d13d';
+        case 'swapping':
+          return '#ffdb5c'
         default:
-          return '#1677ff';
+          return '#3fb1e3';
       }
     }
     if (chart) {
