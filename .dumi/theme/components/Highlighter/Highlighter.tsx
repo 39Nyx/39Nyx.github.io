@@ -19,8 +19,8 @@ const SyntaxHighlighter: React.FC<SyntaxHighlighterProps> = memo<SyntaxHighlight
     const { styles, theme } = useStyles();
     const { isDarkMode } = useThemeMode();
     const [loading, setLoading] = useState(false);
-
     const codeToHtml = useShiki({ onLoadingChange: setLoading, theme: syntaxTheme?.shiki });
+
     return (
       <>
         {loading ? (
