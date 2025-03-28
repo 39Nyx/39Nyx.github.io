@@ -85,6 +85,7 @@ export const nav = [
     title: '后端',
     link: '/blank',
     children: [
+      { title: 'Python', link: '/python'},
       { title: 'springBoot', link: '/spring-boot' }
     ]
   }
