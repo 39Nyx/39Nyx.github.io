@@ -12,7 +12,6 @@ interface SourceCodeProps {
 const OriginSourceCode: React.FC<SourceCodeProps> = ({ children, lang }) => {
   const theme = useSiteStore((s) => s.siteData.themeConfig.syntaxTheme);
 
-  console.log(theme, lang)
   return (
     <ThemeProvider>
       <Highlighter syntaxThemes={theme} language={lang}>
