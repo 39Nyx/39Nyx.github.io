@@ -1,13 +1,8 @@
-import { Loading3QuartersOutlined as Loading } from '@ant-design/icons';
-import { useThemeMode } from 'antd-style';
-import React, { memo, useState } from 'react';
-import { Center, Flexbox } from 'react-layout-kit';
-
+import React, { memo, useEffect, useState } from 'react';
+import { codeToHtml } from 'shiki'
 import { useStyles } from './Highlighter.style';
-
 import type { HighlighterProps } from './index';
-import { Prism } from './Prism';
-import { useShiki } from './useShiki';
+import { usePrefersColor } from "dumi";
 
 type SyntaxHighlighterProps = Pick<
   HighlighterProps,
@@ -16,29 +11,24 @@ type SyntaxHighlighterProps = Pick<
 
 const SyntaxHighlighter: React.FC<SyntaxHighlighterProps> = memo<SyntaxHighlighterProps>(
   ({ children, language, syntaxThemes: syntaxTheme }) => {
-    const { styles, theme } = useStyles();
-    const { isDarkMode } = useThemeMode();
-    const [loading, setLoading] = useState(false);
-    const codeToHtml = useShiki({ onLoadingChange: setLoading, theme: syntaxTheme?.shiki });
+    const { styles } = useStyles();
+    const [theme] = usePrefersColor()
+    const [html, setHtml] = useState('')
+    useEffect(() => {
+      codeToHtml(children, {
+        lang: language,
+        theme: theme === 'light' ? 'light-plus' : 'material-theme-ocean'
+      }).then(setHtml)
+    }, [theme]);
 
     return (
       <>
-        {loading ? (
-          <Prism language={language}>{children}</Prism>
-        ) : (
-          <div
-            dangerouslySetInnerHTML={{
-              __html: codeToHtml(children, language, isDarkMode) || '',
-            }}
-            className={styles.shiki}
-          />
-        )}
-        {loading && (
-          <Center horizontal gap={8} className={styles.loading}>
-            <Loading spin style={{ color: theme.colorTextTertiary }} />
-            着色器准备中...
-          </Center>
-        )}
+        <div
+          dangerouslySetInnerHTML={ {
+            __html: html,
+          } }
+          className={ styles.shiki }
+        />
       </>
     );
   },
