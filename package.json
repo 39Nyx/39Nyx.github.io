@@ -65,6 +65,7 @@
     "react-layout-kit": "^1.9.1",
     "react-sortablejs": "^6.1.4",
     "resize-observer-polyfill": "^1.5.1",
+    "shiki": "^3.2.1",
     "shiki-es": "^0.14.0",
     "sortablejs": "^1.15.6",
     "styled-components": "^6.1.15",
