@@ -1,6 +1,6 @@
 ---
 title: 插入排序
-order: 1
+order: 2
 group:
   title: 排序算法
   order: 3
@@ -53,7 +53,7 @@ export default () => <InsertionSort />
 :::code-group
 
 ```javascript [js]
-
+let a = 10
 ```
 
 
@@ -90,5 +90,18 @@ public class InsertSort {
         }
     }
 }
+```
+
+```python [python]
+def insert_sort(arr):
+    for i in range(1, len(arr)):
+        insert_value = arr[i]
+        insert_index = i
+        for j in range(insert_index - 1, -1, -1):
+            if insert_value < arr[j]:
+                arr[j + 1] = arr[j]
+            else:
+                break
+        arr[insert_index] = insert_value
 ```
 :::

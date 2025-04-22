@@ -22,7 +22,44 @@ group:
 
 - 空二叉树
 - 只有一个根节点
+
+```jsx
+import { DendrogramTree } from '39nyx'
+
+export default () => {
+  const treeData = {
+    id: "1",
+  }
+  return (
+    <div>
+      <DendrogramTree data={treeData}></DendrogramTree>
+    </div>
+  )
+}
+```
+
 - 根节点只有左子树
+
+```jsx
+import { DendrogramTree } from '39nyx'
+
+export default () => {
+  const treeData = {
+    id: "1",
+    children: [
+      {
+        id: "2",
+      },
+    ],
+  }
+  return (
+    <div>
+      <DendrogramTree data={treeData}></DendrogramTree>
+    </div>
+  )
+}
+```
+
 - 根节点只有右子树
 - 根节点既有左子树又有右子树
 
