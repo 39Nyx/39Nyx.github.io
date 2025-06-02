@@ -1,6 +1,6 @@
 ---
 title: 解析器
-order: 1
+order: 5
 group:
   title: 编译器
   order: 3

@@ -1,19 +1,19 @@
 ---
-title: 安装
+title: 快速上手
 order: 1
 group:
   title: 基础
   order: 1
 ---
 
-## 安装
+## 创建vue应用
 
 执行`npm create vue@legacy`命令，会自动安装最新版本的 Vue 2.x。
 
 ```shell
 $ npm create vue@legacy
 
-Vue.js - The Progressive JavaScript Framework
+Vue.js - The Progressive JavaScript Fram                     ework
 
 ✔ Project name: … vue2-example
 ✔ Add TypeScript? … No / Yes
