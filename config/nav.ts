@@ -9,7 +9,8 @@ export const nav = [
       { title: '算法', link: '/algorithm/question/dynamic-programming' },
       { title: 'css', link: '/css' },
       { title: 'nodeJs', link: '/node-js' },
-      { title: '案例', link: '/case' }
+      { title: '案例', link: '/case' },
+      { title: '面试', link: '/interview' }
     ]
   },
   {
