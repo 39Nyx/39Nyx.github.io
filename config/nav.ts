@@ -10,7 +10,7 @@ export const nav = [
       { title: 'css', link: '/css' },
       { title: 'nodeJs', link: '/node-js' },
       { title: '案例', link: '/case' },
-      { title: '面试', link: '/interview' }
+      { title: '知识点', link: '/interview' }
     ]
   },
   {
