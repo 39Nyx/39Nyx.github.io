@@ -107,6 +107,80 @@ pnpm dev
 ├── tsconfig.json         # 项目级别的 TypeScript 配置文件
 ├── tsconfig.node.sjon    # 工具配置文件专用配置
 |── README.md             # 项目说明文档
-├── vite.config.ts        # Vite 配置文件
-└── windi.config.ts
+└── vite.config.ts        # Vite 配置文件
+```
+
+### tsconfig.app.json
+
+```json
+{
+  "extends": "@vue/tsconfig/tsconfig.dom.json",
+  "include": ["env.d.ts", "src/**/*", "src/**/*.vue"],
+  "exclude": ["src/**/__tests__/*"],
+  "compilerOptions": {
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  }
+}
+
+```
+
+### tsconfig.node.json
+
+```json
+{
+  "extends": "@tsconfig/node22/tsconfig.json",
+  "include": [
+    "vite.config.*",
+    "vitest.config.*",
+    "cypress.config.*",
+    "nightwatch.conf.*",
+    "playwright.config.*",
+    "eslint.config.*"
+  ],
+  "compilerOptions": {
+    "noEmit": true,
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",
+
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "types": ["node"]
+  }
+}
+```
+
+#### 配置项详解
+
+- `extends`: 继承的配置文件，这里继承了`@tsconfig/node22/tsconfig.json`的基础配置。
+- `include`: 指定该`tsconfig`文件将应用于哪些文件， 这里的文件列表都是项目中的配置文件，都是用`ts`编写的，并且运行在`node.js`环境中(不是浏览器)
+  - `vite.config.*`: vite的配置文件
+  - `vitest.config.*`: vitest的配置文件
+  - `cypress.config.*`: cypress的配置文件
+  - `nightwatch.conf.*`: nightwatch的配置文件
+  - `playwright.config.*`: playwright的配置文件
+  - `eslint.config.*`: eslint的配置文件
+- `compilerOptions`: 编译选项
+  - `noEmit`: 禁止编译输出文件，这里设置为`true`是为了防止编译时产生额外的`.js`文件
+  - `tsBuildInfoFile`: 编译缓存文件，指定了增量编译信息的存储位置。这有助于加快后续的类型检查速度。但注意，由于noEmit设置为true，这个选项可能不会产生实际效果，因为不会生成输出文件
+  - `module`: 指定模块系统为ESNext（即最新版本的ES模块）。这适用于使用现代打包工具或运行环境（如Node.js）支持ES模块的场景
+  - `moduleResolution`: 指定模块解析策略为`Bundler`（即由TypeScript编译器处理模块依赖）。这适用于使用TypeScript编写的大型项目，以避免模块解析性能问题。
+  - `types`: 声明文件列表，这里声明了`node`模块，以便在TypeScript环境中使用Node.js API。
+
+### tsconfig.json
+
+```json
+{
+  "files": [],
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    },
+    {
+      "path": "./tsconfig.app.json"
+    }
+  ]
+}
 ```
