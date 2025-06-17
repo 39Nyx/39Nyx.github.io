@@ -45,18 +45,21 @@ closureFn(); // 输出："外部变量" ← 仍能访问 outerVar！
 ### 封装私有变量
 
 ```javascript
-function createCounter() {
-  let count = 0; // 私有变量，外部无法直接访问
+function createBankAccount(initialBalance) {
+  let balance = initialBalance; // 私有变量, 外部无法直接访问
+
   return {
-    increment: () => ++count,
-    getCount: () => count
+    deposit: (amount) => balance += amount,
+    withdraw: (amount) => (amount <= balance) ? balance -= amount : "余额不足",
+    getBalance: () => `当前余额：¥${balance}`
   };
 }
 
-const counter = createCounter();
-counter.increment(); // count = 1
-console.log(counter.getCount()); // 1
-console.log(counter.count); // undefined（无法直接访问）
+const myAccount = createBankAccount(1000);
+myAccount.deposit(500);
+console.log(myAccount.getBalance()); // "当前余额：¥1500"
+myAccount.withdraw(2000); // "余额不足"
+console.log(myAccount.balance); // undefined（无法直接访问私有变量）
 ```
 
 ### 事件处理与回调
@@ -75,6 +78,8 @@ function setupClickHandler(buttonId) {
 
 ### 函数工厂
 
+使用闭包可以实现函数工厂模式，即返回一个函数，该函数可以生成另一个函数，并且该函数可以访问外部函数的变量。
+
 ```javascript
 function multiplier(factor) {
   return (x) => x * factor; // 闭包记住 factor
@@ -82,12 +87,181 @@ function multiplier(factor) {
 
 const double = multiplier(2);
 console.log(double(5)); // 10（5*2）
+
+function createPower(exponent) {
+  return function(base) {
+    return Math.pow(base, exponent);
+  };
+}
+
+const square = createPower(2);
+const cube = createPower(3);
+
+console.log(square(5)); // 25 (5²)
+console.log(cube(3));   // 27 (3³)
 ```
+
+### 状态保持
+
+闭包可以实现状态的保持，即使函数执行完毕，其内部变量也能被外部函数访问到。在事件处理和异步操作中经常用到
+
+```javascript
+function setupCounter() {
+  let count = 0;
+  const btn = document.getElementById('counterBtn');
+  
+  btn.addEventListener('click', () => {
+    count++; // 闭包保持count状态
+    btn.textContent = `点击了 ${count} 次`;
+  });
+}
+
+// 即使setupCounter执行结束，点击事件仍能访问count
+```
+
+### 模块模式
+
+```javascript
+const calculator = (function() {
+  // 私有方法
+  const validate = (num) => typeof num === 'number';
+  
+  // 暴露公共API
+  return {
+    add: (a, b) => validate(a) && validate(b) ? a + b : '非法输入',
+    multiply: (a, b) => a * b
+  };
+})();
+
+console.log(calculator.add(2, 3)); // 5
+console.log(calculator.validate(5)); // Error（私有方法不可访问）
+```
+
+### 防抖/节流函数
+
+```javascript
+// 防抖函数（停止操作后执行）
+function debounce(fn, delay) {
+  let timerId;
+  return function(...args) {
+    clearTimeout(timerId);
+    timerId = setTimeout(() => fn.apply(this, args), delay);
+  };
+}
+
+// 使用
+const searchInput = document.getElementById('search');
+searchInput.addEventListener('input', debounce(() => {
+  console.log('发送搜索请求...');
+}, 300));
+```
+
+### 柯里化函数
+
+```javascript
+function curry(fn) {
+  return function curried(...args) {
+    if (args.length >= fn.length) {
+      return fn.apply(this, args);
+    } else {
+      return (...nextArgs) => curried.apply(this, args.concat(nextArgs));
+    }
+  };
+}
+
+// 使用
+const sum = (a, b, c) => a + b + c;
+const curriedSum = curry(sum);
+
+console.log(curriedSum(1)(2)(3)); // 6
+console.log(curriedSum(1, 2)(3)); // 6
+```
+
+### 缓存记忆
+
+```javascript
+function memoize(fn) {
+  const cache = new Map();
+  return function(...args) {
+    const key = JSON.stringify(args);
+    if (cache.has(key)) return cache.get(key);
+    
+    const result = fn.apply(this, args);
+    cache.set(key, result);
+    return result;
+  };
+}
+
+// 使用
+const factorial = memoize(n => 
+  (n <= 1) ? 1 : n * factorial(n - 1)
+);
+
+console.log(factorial(5)); // 120（计算）
+console.log(factorial(5)); // 120（从缓存读取）
+```
+
+### 循环中的闭包
+
+```javascript
+for (var i = 0; i < 5; i++) {
+  (function(j) { // 立即执行函数创建新作用域
+    setTimeout(() => console.log(j), 100);
+  })(i);
+}
+// 输出：0,1,2,3,4（正确）
+
+// 使用let的现代方案（无需闭包）：
+for (let i = 0; i < 5; i++) {
+  setTimeout(() => console.log(i), 100);
+}
+```
+
+### API请求状态隔离
+
+```javascript
+function createApiClient(baseUrl) {
+  let requestCount = 0;
+  
+  return {
+    get: async (endpoint) => {
+      requestCount++;
+      const res = await fetch(`${baseUrl}/${endpoint}`);
+      return res.json();
+    },
+    getRequestCount: () => requestCount
+  };
+}
+
+const userApi = createApiClient('https://api.example.com/users');
+userApi.get('profile'); // 独立计数
+```
+
+:::info
+循环中的闭包和API请求状态隔离是特殊的应用场景
+:::
 
 ## 闭包的注意事项
 
 - **内存泄漏风险**: 闭包会长期持有外部变量的引用，可能导致内存无法释放。不再使用的闭包应及时解除引用（如 `closureFn = null`）
+
+```javascript
+let heavyClosure = createHeavyObject();
+// 使用后释放
+heavyClosure = null; 
+```
+
 - **性能影响**: 过度使用闭包可能增加内存消耗，需合理使用
+
+> 核心价值：闭包是 JavaScript 的核心特性，它实现了： 
+> 
+> 数据封装（私有变量） 
+> 
+> 状态持久化（函数记忆） 
+> 
+> 灵活的函数组合（柯里化、函数工厂） 
+> 
+> 模块化开发基础（隔离作用域）
 
 ## 闭包的本质
 
