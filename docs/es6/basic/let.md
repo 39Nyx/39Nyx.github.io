@@ -18,8 +18,8 @@ ES6 新增了`let`命令，用来声明变量。它的用法类似于`var`，但
   var b = 1;
 }
 
-a // ReferenceError: a is not defined.
-b // 1
+console.log(b) // 1
+console.log(a) // ReferenceError: a is not defined.
 ```
 
 上面代码在代码块之中，分别用`let`和`var`声明了两个变量。然后在代码块之外调用这两个变量，结果`let`声明的变量报错，`var`声明的变量返回了正确的值。这表明，`let`声明的变量只在它所在的代码块有效。
@@ -96,6 +96,24 @@ let bar = 2;
 ```
 
 上面代码中，变量`foo`用`var`命令声明，会发生变量提升，即脚本开始运行时，变量`foo`已经存在了，但是没有值，所以会输出`undefined`。变量`bar`用`let`命令声明，不会发生变量提升。这表示在声明它之前，变量`bar`是不存在的，这时如果用到它，就会抛出一个错误。
+
+
+```javascript
+var n = 24
+
+function foo() {
+  console.log(n) // undefined
+  var n = 10;
+  if (true) {
+    var n = 20
+  }
+  console.log('n = ', n)
+}
+
+foo() // Output: 20
+```
+
+上面代码中， 函数`foo`内部声明了一个变量`n`，但是由于`var`命令的特点，导致`n`可以提升到函数作用域的最前面，导致`n`的值为`undefined`。然后又在`if`代码块内声明了一个局部变量`n`，导致`n`的值被覆盖为`20`，最后输出`20`。
 
 ### 暂时性死区
 
@@ -271,6 +289,16 @@ function f1() {
 ```
 
 上面的函数有两个代码块，都声明了变量`n`，运行后输出 5。这表示外层代码块不受内层代码块的影响。如果两次都使用`var`定义变量`n`，最后输出的值才是 10。
+
+```javascript
+function f1() {
+  var n = 5;
+  if (true) {
+    var n = 10;
+  }
+  console.log(n); // 10
+}
+```
 
 ES6 允许块级作用域的任意嵌套。
 
