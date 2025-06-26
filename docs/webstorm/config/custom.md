@@ -31,7 +31,7 @@ module.exports = {
 };
 ```
 
-:::tip 提示
+:::info{title=提示}
 文件名叫啥都可以, 不一定要叫`alias.config.js`
 :::
 
