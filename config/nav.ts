@@ -86,8 +86,10 @@ export const nav = [
     title: '后端',
     link: '/blank',
     children: [
+      { title: 'Java', link: '/java' },
+      { title: 'Maven', link: '/maven' },
       { title: 'Python', link: '/python'},
-      { title: 'springBoot', link: '/spring-boot' },
+      { title: 'SpringBoot', link: '/spring-boot' },
       { title: '爬虫', link: '/reptile' },
     ]
   }
