@@ -11,7 +11,7 @@ group:
 
 有如下插槽结构
 
-```vue
+```vue | pure
 <script>
   export default {
     props: {
@@ -54,7 +54,7 @@ export default {
 
 在`vue`组件中使用
 
-```vue
+```vue | pure
 <script setup>
 import SlotDemo from './SlotDemo.jsx`;
 </script>

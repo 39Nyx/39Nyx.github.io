@@ -16,7 +16,7 @@ pnpm add monaco-editor
 
 ### 使用
 
-```vue
+```vue | pure
 <script setup lang="ts">
 import { onMounted, ref, type Ref } from 'vue';
 
@@ -136,7 +136,7 @@ export { monaco };
 
 然后在使用的时候引入这个文件即可
 
-```vue
+```vue | pure
 <script setup lang="ts">
   // 用lib下的monaco
   import { monaco } from '@/src/lib/monaco';

@@ -467,7 +467,7 @@ function liveDangerously(x?: number) {
 
 在例如如下`vue`组件的`dom`操作中，`!`运算符可以避免`null`和`undefined`的可能性
 
-```vue
+```vue | pure
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 

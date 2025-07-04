@@ -14,7 +14,7 @@ order: 3
 
 ## 简单创建流程图
 
-```vue
+```vue | pure
 <script setup lang="ts">
   import { onMounted, type Ref, ref } from 'vue'
   import Viewer from 'bpmn-js/lib/Modeler'
@@ -170,7 +170,7 @@ function changeColorByMarker(viewer: Viewer) {
 
 下面是上面案例的完整代码
 
-```vue
+```vue | pure
 <script setup lang="ts">
 import { onMounted, type Ref, ref } from 'vue'
 import Viewer from 'bpmn-js/lib/Modeler'

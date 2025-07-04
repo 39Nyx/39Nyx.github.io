@@ -12,7 +12,7 @@ group:
 
 例如如下代码结构
 
-```vue
+```vue | pure
 <script>
 export default {
   name: 'HomeView',
@@ -50,7 +50,7 @@ export default {
 
 在将key值设置为id后，渲染就不会出现问题了
 
-```vue
+```vue | pure
 <script>
 export default {
   name: 'HomeView',

@@ -69,7 +69,7 @@ getPizzaCollaborationBpmn().then((res) => {
 
 完整代码如下:
 
-```vue
+```vue | pure
 <script setup lang="ts">
 import { onMounted, type Ref, ref } from 'vue'
 import BpmnViewer from 'bpmn-js'

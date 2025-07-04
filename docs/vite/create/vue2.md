@@ -51,7 +51,7 @@ new Vue({
 
 - 在`src`目录下创建`App.vue`文件, 并添加以下内容:
 
-```vue
+```vue | pure
 <script>
 </script>
 

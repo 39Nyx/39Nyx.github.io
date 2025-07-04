@@ -76,7 +76,7 @@ defineTechStack({
 
 例如在`md`文件中使用`vue`代码块
 
-```vue
+```vue | pure
 <script>
 export default {
   name: 'FooView',
@@ -101,7 +101,7 @@ export default {
 
 raw就是
 
-```vue
+```vue | pure
 <script>
 export default {
   name: 'FooView',
