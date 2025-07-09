@@ -14,10 +14,6 @@ export default defineConfig({
     github: 'https://github.com/39Nyx/39Nyx.github.io'
   },
   html2sketch: {},
-  analytics: {
-    ga_v2: 'G-Z3WZ2TPVNJ',
-    baidu: '37f2470d412281b6e20b1ce407956d30'
-  },
   headScripts: [
     `;(function(){
       let manifestLink = document.createElement('link');
