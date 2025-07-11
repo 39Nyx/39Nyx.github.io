@@ -85,6 +85,5 @@ export default defineConfig({
   },
   plugins: [
     require.resolve('./plugin/medium-zoom.ts')
-  ],
-  presets: ['@dumijs/preset-vue']
+  ]
 });

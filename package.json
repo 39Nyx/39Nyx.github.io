@@ -18,7 +18,6 @@
     "lint": "npm run lint:es && npm run lint:css",
     "lint:css": "stylelint \"{src,test}/**/*.{css,less}\"",
     "lint:es": "eslint \"{src,test}/**/*.{js,jsx,ts,tsx}\"",
-    "prepare": "husky install && dumi setup",
     "prepublishOnly": "father doctor && npm run build",
     "start": "npm run dev",
     "create": "node ./bin/index.js create"
@@ -107,10 +106,6 @@
     "react-dom": "^19.1.0",
     "react-syntax-highlighter": "^15.6.1",
     "stylelint": "^16.19.1"
-  },
-  "peerDependencies": {
-    "react": ">=16.9.0",
-    "react-dom": ">=16.9.0"
   },
   "publishConfig": {
     "access": "public"
