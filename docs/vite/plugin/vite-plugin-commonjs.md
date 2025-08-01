@@ -32,8 +32,6 @@ import commonjs from '@originjs/vite-plugin-commonjs'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
-    vue2(),
-    vue2Jsx(),
     commonjs.viteCommonjs({
       // 指定需要转换的模块, 例如 crypto-js
       include: [
