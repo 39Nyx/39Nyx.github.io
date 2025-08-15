@@ -109,3 +109,7 @@ mvn -v
 :::info{title=提示}
 在maven3.8.1开始, url地址强制使用`https`协议，不在支持`http`协议
 :::
+
+## 历史版本
+
+一些项目有版本要求，这个时候需要下载旧的`maven`版本, 那么可以进入[https://archive.apache.org/dist/maven/maven-3/](https://archive.apache.org/dist/maven/maven-3/)下载旧版本的`bin.zip`或者`bin.tar.gz`压缩包
