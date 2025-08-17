@@ -45,7 +45,8 @@ export const nav = [
       { title: '拖拽', link: '/react-sortablejs/sortable' },
       { title: 'unoCss', link: '/unoCss' },
       { title: 'bpmnJs', link: '/bpmn-js' },
-      { title: 'axios', link: '/axios' }
+      { title: 'axios', link: '/axios' },
+      { title: 'Shiki', link: '/shiki' }
     ]
   },
   {
@@ -63,7 +64,8 @@ export const nav = [
     children: [
       { title: 'webgl', link: '/webgl' },
       { title: 'echarts', link: '/echarts' },
-      { title: 'three.js', link: '/three' }
+      { title: 'three.js', link: '/three' },
+      { title: '百度地图', link: '/baidu-map' }
     ]
   },
   {
