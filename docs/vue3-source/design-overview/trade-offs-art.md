@@ -37,7 +37,7 @@ appElement.onClick = () => { // 为其绑定点击事件
 
 例如上面的需求, 使用vue3的声明式语法可以写成:
 
-```vue
+```vue | pure
 <template>
   <div id="app" @click="handleClick">{{ msg }}</div>
 </template>

@@ -123,7 +123,7 @@ pnpm --filter examples add @39nyx/ui-components --workspace
 
 在`ui-components/src/components`新建`button/index.vue`文件, 内容如下:
 
-```vue
+```vue | pure
 <script>
 export default {
   name: 'MyButton',
@@ -270,7 +270,7 @@ shared-utils
 
 在`examples`中编写`vue`文件进行测试
 
-```vue
+```vue | pure
 <script setup>
 import { computed, ref } from 'vue'
 import { sum } from '@39nyx/shared-utils'

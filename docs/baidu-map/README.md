@@ -168,7 +168,7 @@ export function loadMap(akProxyUrl) {
 
 然后在`vue`组件中使用
 
-```vue
+```vue | pure
 <template>
   <div ref="mapRef" id="map-container"></div>
 </template>
