@@ -85,5 +85,8 @@ export default defineConfig({
   },
   plugins: [
     require.resolve('./plugin/medium-zoom.ts')
-  ]
+  ],
+  skk: {
+    enableVue: true
+  }
 });
