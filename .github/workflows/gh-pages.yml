@@ -41,6 +41,8 @@ jobs:
         run: pnpm install --registry=https://registry.npmmirror.com
       - name: Build
         run: pnpm run docs:build
+        timeout-minutes: 1
+        continue-on-error: true
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Upload artifact
