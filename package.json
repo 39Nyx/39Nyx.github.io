@@ -45,7 +45,7 @@
     ]
   },
   "dependencies": {
-    "@39nyx/dumi-theme-skk": "^1.4.1",
+    "@39nyx/dumi-theme-skk": "^1.4.2",
     "@ant-design/icons": "^6.0.0",
     "@ant-design/pro-components": "^2.8.7",
     "@antv/g6": "^5.0.48",
