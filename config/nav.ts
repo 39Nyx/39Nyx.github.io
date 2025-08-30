@@ -32,6 +32,7 @@ export const nav = [
       { title: 'npm', link: '/npm' },
       { title: 'yarn', link: '/yarn' },
       { title: 'pnpm', link: '/pnpm' },
+      { title: 'pm2', link: '/pm2' },
       { title: 'dUmi', link: '/d-umi' },
       { title: 'github', link: '/github' }
     ]
