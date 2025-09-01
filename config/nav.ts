@@ -73,7 +73,8 @@ export const nav = [
     title: '源码',
     link: '/source',
     children: [
-      { title: 'Vue3', link: '/vue3-source' }
+      { title: 'Vue3', link: '/vue3-source' },
+      { title: 'vue-mini', link: '/vue-mini' }
     ]
   },
   {
