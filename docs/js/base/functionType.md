@@ -6,11 +6,60 @@ group:
   order: 1
 ---
 
-# 函数类型
+## 具名函数(Named Function)
 
-## 简介
+- **定义**: 在声明时指定了名称的函数
+- **特点**:
+  - 有明确的函数名标识
+  - 在调试时调用栈会显示函数名
+  - 支持函数内部递归调用自身
+  - 函数对象的 name属性值为函数名
 
-> 函数是一个对象，函数名是指向函数的指针
+示例如下:
+
+```javascript
+// 函数声明
+function functionName() { 
+  // 函数体
+}
+
+// 函数表达式
+const func = function functionName() {
+  // 函数体
+}
+```
+
+## 匿名函数 (Anonymous Function)
+
+- **定义**: 没有指定名称的函数
+- **特点**:
+  - 没有函数名标识（如示 function(...)）
+  - 调试时调用栈显示为 (anonymous)或 anonymous function
+  - 不能通过名称递归调用
+  - 函数对象的 name属性为空字符串（或由引擎自动推断）
+
+示例如下:
+
+```javascript
+const myFunction = function() {
+  // 函数体
+};
+
+// 箭头函数
+const myFunction = () => {
+  // 函数体
+};
+```
+
+## 具名函数 vs 匿名函数
+
+| 特性 | 匿名函数 | 具名函数 |
+| :---: | :---: | :---: |
+| 函数名称 | 无名称 | 有名称 |
+| 调用栈 | 显示为 (anonymous)或 anonymous function | 显示为函数名 |
+| 递归调用 | 不支持 | 支持 |
+| 函数对象 | name属性为空字符串（或由引擎自动推断） | name属性值为函数名 |
+| 可读性 | 无名称，可读性差 | 有名称，可读性好 |
 
 ## 定义
 
@@ -18,7 +67,7 @@ group:
 
 ```javascript
 function fun() {
-	console.log("hello world");
+  console.log("hello world");
 }
 ```
 
@@ -26,7 +75,7 @@ function fun() {
 
 ```javascript
 let fun = function() {
-	console.log("hello world");
+  console.log("hello world");
 }
 ```
 
@@ -46,11 +95,11 @@ let fun = function() {
 
 ```JavaScript
 function add(num1, num2) {
-    return num1 + num2;
+  return num1 + num2;
 }
 
 function callFunction(fun, num1, num2) {
-    return fun(num1, num2);
+  return fun(num1, num2);
 }
 let result = callFunction(add, 10, 20);
 console.log(result);
@@ -62,18 +111,18 @@ console.log(result);
 
 //这样写是最好的，第一次看会有些不理解，但推荐这种写法
 function cmp(propertyName) {
-    return function (obj1, obj2) {
-        let value1 = obj1[propertyName];
-        let value2 = obj2[propertyName];
+  return function (obj1, obj2) {
+      let value1 = obj1[propertyName];
+      let value2 = obj2[propertyName];
 
-        if (value1 < value2) {
-            return 1;
-        } else if (value1 > value2) {
-            return -1;
-        } else {
-            return 0;
-        }
-    };
+      if (value1 < value2) {
+          return 1;
+      } else if (value1 > value2) {
+          return -1;
+      } else {
+          return 0;
+      }
+  };
 }
 
 //上面这种写法如果看不懂，可以看这种写法，但不推荐
