@@ -121,7 +121,12 @@ div.innerHTML = html
 
 图 1-2 直观地对比了 `innerHTML` 和虚拟 DOM 在创建页面时的性能。
 
-**图 1-2　`innerHTML` 和虚拟 DOM 在创建页面时的性能**
+**`innerHTML` 和虚拟 DOM 在创建页面时的性能对比**
+
+|       -       |         虚拟DOM         | innerHTML  |
+|:-------------:|:---------------------:|:----------:|
+| 纯JavaScript运算 | 创建JavaScript对象(VNode) | 渲染HTML字符串  |
+|     DOM运算     |       新建所有DOM元素       | 新建所有DOM元素 |
 
 可以看到，无论是纯 JavaScript 层面的计算，还是 DOM 层面的计算，其实两者差距不大。这里我们从宏观的角度只看数量级上的差异。如果在同一个数量级，则认为没有差异。在创建页面的时候，都需要新建所有 DOM 元素。
 
@@ -129,7 +134,12 @@ div.innerHTML = html
 
 使用 `innerHTML` 更新页面的过程是 **重新构建 HTML 字符串，再重新设置 DOM 元素的 `innerHTML` 属性**，这其实是在说，哪怕我们只更改了一个文字，也要重新设置 `innerHTML` 属性。而重新设置 `innerHTML` 属性就等价于 **销毁所有旧的 DOM 元素，再全量创建新的 DOM 元素**。再来看虚拟 DOM 是如何更新页面的。它需要重新创建 JavaScript 对象（虚拟 DOM 树），然后比较新旧虚拟 DOM，找到变化的元素并更新它。图 1-3 可作为对照。
 
-**图 1-3　虚拟 DOM 和 `innerHTML` 在更新页面时的性能**
+**虚拟 DOM 和 `innerHTML` 在更新页面时的性能**
+
+|       -       |            虚拟DOM             |        innerHTML         |
+|:-------------:|:----------------------------:|:------------------------:|
+| 纯JavaScript运算 | 创建JavaScript对象(VNode) + Diff |        渲染HTML字符串         |
+|     DOM运算     |           必要的DOM更新           | 销毁所有旧的DOM<br/>新建所有新DOM元素 |
 
 可以发现，在更新页面时，虚拟 DOM 在 JavaScript 层面的运算要比创建页面时多出一个 Diff 的性能消耗，然而它毕竟也是 JavaScript 层面的运算，所以不会产生数量级的差异。再观察 DOM 层面的运算，可以发现虚拟 DOM 在更新页面时只会更新必要的元素，但 `innerHTML` 需要全量更新。这时虚拟 DOM 的优势就体现出来了。
 
