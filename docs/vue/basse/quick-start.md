@@ -88,6 +88,29 @@ pnpm dev
 
 ### 项目结构
 
+:::file-tree
+
+- project-name/ 
+  - node_modules/         # 项目依赖的第三方包
+  - public/               # 静态资源目录
+    - favicon.ico       # 网站图标
+  - src                   # 源码目录
+    - assets            # 静态资源目录, 如图片、字体等，会被构建处理（如压缩、哈希）
+    - components        # 公共组件目录
+      - router            # 路由目录
+      - App.vue           # 根组件, 所有页面都是在该组件下进行切换的
+      - main.ts           # 入口文件
+      - views             # 页面组件目录
+  - env.d.ts              # 全局类型定义文件, 用于补充 TypeScript 的类型定义, 例如：declare module "*.vue" { }等
+  - package.json          # 项目配置文件
+  - pnpm-lock.yaml        # 项目依赖版本锁定文件
+  - tsconfig.app.json     # 应用级别的 TypeScript 配置文件
+  - tsconfig.json         # 项目级别的 TypeScript 配置文件
+  - tsconfig.node.sjon    # 工具配置文件专用配置
+  - README.md             # 项目说明文档
+  - vite.config.ts        # Vite 配置文件
+:::
+
 ```
 .
 ├── node_modules/         # 项目依赖的第三方包
