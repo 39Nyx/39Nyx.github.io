@@ -83,10 +83,11 @@ export default defineConfig({
     }
     return memo;
   },
-  plugins: [
-    require.resolve('./plugin/medium-zoom.ts')
-  ],
   skk: {
-    enableVue: true
+    enableVue: true,
+    compiler: {
+      babelStandaloneCDN: 'https://unpkg.com/@babel/standalone/babel.min.js'
+    },
+    fileTree: true
   }
 });
