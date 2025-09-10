@@ -1,0 +1,56 @@
+name: Deploy static content to Pages
+
+on:
+  # 仅在推送到默认分支时运行。
+  push:
+    branches: ['main']
+
+  # 这个选项可以使你手动在 Action tab 页面触发工作流
+  workflow_dispatch:
+
+# 设置 GITHUB_TOKEN 的权限，以允许部署到 GitHub Pages。
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 允许一个并发的部署
+concurrency:
+  group: 'pages'
+  cancel-in-progress: true
+
+jobs:
+  # 单次部署的工作描述
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: 设置node环境
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+      - name: 设置pnpm环境
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      - name: 安装依赖
+        run: pnpm install --registry=https://registry.npmmirror.com
+      - name: Build
+        run: pnpm run docs:build
+        timeout-minutes: 2
+        continue-on-error: true
+      - name: Deploy to Server via SSH
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.SERVER_HOST }} # 从 Secrets 读取服务器 IP
+          username: ${{ secrets.SERVER_USER }} # 从 Secrets 读取用户名
+          key: ${{ secrets.SERVER_SSH_KEY }} # 从 Secrets 读取私钥
+          port: ${{ secrets.SERVER_PORT }} # 从 Secrets 读取端口
+          script: |
+            cd ${{ secrets.SERVER_PATH }} # 从 Secrets 读取服务器路径
+            pwd
+            ls
