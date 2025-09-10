@@ -1,4 +1,4 @@
-name: Deploy static content to Pages
+name: 云服务部署
 
 on:
   # 仅在推送到默认分支时运行。
@@ -7,17 +7,6 @@ on:
 
   # 这个选项可以使你手动在 Action tab 页面触发工作流
   workflow_dispatch:
-
-# 设置 GITHUB_TOKEN 的权限，以允许部署到 GitHub Pages。
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-# 允许一个并发的部署
-concurrency:
-  group: 'pages'
-  cancel-in-progress: true
 
 jobs:
   # 单次部署的工作描述
