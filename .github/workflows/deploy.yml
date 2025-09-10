@@ -11,11 +11,48 @@ on:
 jobs:
   # 单次部署的工作描述
   deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-24.04
     steps:
+      - name: 代码检出
+        uses: actions/checkout@v4
+      - name: 设置node环境
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+      - name: 设置pnpm环境
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      - name: 安装依赖
+        run: pnpm install --registry=https://registry.npmmirror.com
+      - name: Build
+        run: pnpm run docs:build
+        timeout-minutes: 2
+        continue-on-error: true
+      - name: 生成 Docker 元数据
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: registry.cn-hangzhou.aliyuncs.com/hezhijian/39nyx
+          tags: |
+            type=ref,event=branch
+            type=ref,event=pr
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+      - name: Login to Alibaba Cloud ACR
+        if: github.event_name != 'pull_request'
+        uses: docker/login-action@v3
+        with:
+          registry: registry.cn-hangzhou.aliyuncs.com
+          username: ${{ secrets.ALIBABA_CLOUD_USERNAME }}
+          password: ${{ secrets.ALIBABA_CLOUD_PASSWORD }}
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
       - name: ssh 连接服务器
         uses: appleboy/ssh-action@v1
         with:
