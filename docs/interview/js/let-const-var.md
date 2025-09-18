@@ -132,3 +132,21 @@ function test() {
 
 test();
 ```
+
+## let关键字
+
+- 有块级作用域的概率
+
+```javascript
+{
+  let a = 1;
+}
+console.log(a); // ReferenceError: a is not defined
+```
+
+- 不存在变量提升
+
+```javascript
+console.log(a); // ReferenceError: a is not defined
+let a = 1;
+```
