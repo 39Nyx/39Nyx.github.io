@@ -6,7 +6,18 @@ group:
   order: 1
 ---
 
-## let使用
+变量的声明方式有三种: `let` , `const` , `var`
+
+## let
+
+```file-tree
+
+- src
+  - index.ts
+  - index.html
+  - style.css
+
+```
 
 - 先定义后使用,如果不先定义在使用的话,会存在直接报错
 
