@@ -8,6 +8,12 @@ group:
 
 js有七种基本数据类型: `undefinde`, `Null`, `Number`, `String`, `Boolean`, `Symbol`, `BigInt`,其中`Symbol`是`Es6`新增的, `BigInt`是`Es10`新增的
 
+基本类型的值又被称为原始值(primitive value)或者简单值(simple value)，而引用数据类型的值又被称为复杂值或引用值
+
+简单值的数据类型存储在栈内存中，占用固定大小的内存空间，包括`undefined`, `null`, `number`, `string`, `boolean`
+
+复杂值的数据类型存储在堆内存中，占用可变大小的内存空间，包括`object`, `function`, `array`, `map`, `set`, `date`, `regexp`等
+
 ## undefined
 
 `Undefined`类型只有一个值，就是特殊值`undefined`, 申明变量但是没有初始化时，就相当于给变量赋值`undefined`
