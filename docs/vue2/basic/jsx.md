@@ -29,63 +29,71 @@ Vue 推荐在绝大多数情况下使用模板来创建你的 HTML。然而在�
 
 当开始写一个只能通过 `level` prop 动态生成标题 (heading) 的组件时，你可能很快想到这样实现：
 
-``` html
-<script type="text/x-template" id="anchored-heading-template">
-  <h1 v-if="level === 1">
-    <slot></slot>
-  </h1>
-  <h2 v-else-if="level === 2">
-    <slot></slot>
-  </h2>
-  <h3 v-else-if="level === 3">
-    <slot></slot>
-  </h3>
-  <h4 v-else-if="level === 4">
-    <slot></slot>
-  </h4>
-  <h5 v-else-if="level === 5">
-    <slot></slot>
-  </h5>
-  <h6 v-else-if="level === 6">
-    <slot></slot>
-  </h6>
-</script>
-```
+```vue | pure
+// anchoredHeading.vue
+<template>
+  <div>
+    <h1 v-if="level === 1">
+      <slot></slot>
+    </h1>
+    <h2 v-else-if="level === 2">
+      <slot></slot>
+    </h2>
+    <h3 v-else-if="level === 3">
+      <slot></slot>
+    </h3>
+    <h4 v-else-if="level === 4">
+      <slot></slot>
+    </h4>
+    <h5 v-else-if="level === 5">
+      <slot></slot>
+    </h5>
+    <h6 v-else-if="level === 6">
+      <slot></slot>
+    </h6>
+  </div>
+</template>
 
-``` js
-Vue.component('anchored-heading', {
-  template: '#anchored-heading-template',
-  props: {
-    level: {
-      type: Number,
-      required: true
+<script>
+  export default {
+    name: 'AnchoredHeading',
+    props: {
+      level: {
+        type: Number,
+        required: true
+      }
     }
   }
-})
+</script>
 ```
 
 这里用模板并不是最好的选择：不但代码冗长，而且在每一个级别的标题中重复书写了 `<slot></slot>`，在要插入锚点元素时还要再次重复。
 
 虽然模板在大多数组件中都非常好用，但是显然在这里它就不合适了。那么，我们来尝试使用 `render` 函数重写上面的例子：
 
-``` js
-Vue.component('anchored-heading', {
-  render: function (createElement) {
-    return createElement(
-      'h' + this.level,   // 标签名称
-      this.$slots.default // 子节点数组
-    )
-  },
+``` jsx | pure
+// anchoredHeading.jsx
+export default {
+  name: 'AnchoredHeading',
   props: {
     level: {
       type: Number,
       required: true
     }
+  },
+  render(createElement) {
+    return createElement(`h${this.level}`, this.$slots.default)
   }
-})
+}
 ```
 
-看起来简单多了！这样代码精简很多，但是需要非常熟悉 Vue 的实例 property。在这个例子中，你需要知道，向组件中传递不带 `v-slot` 指令的子节点时，比如 `anchored-heading` 中的 `Hello world!`，这些子节点被存储在组件实例中的 `$slots.default` 中。如果你还不了解，**在深入渲染函数之前推荐阅读[实例 property API](../api/#实例-property)。**
+看起来简单多了！这样代码精简很多，但是需要非常熟悉 Vue 的实例 property。
+在这个例子中，你需要知道，向组件中传递不带 `v-slot` 指令的子节点时，比如 `anchored-heading` 中的 `Hello world!`，这些子节点被存储在组件实例中的 `$slots.default` 中。
+如果你还不了解，**在深入渲染函数之前推荐阅读[实例 property API](../api/#实例-property)。**
+
+:::info
+`$slots.default`是一个数组，更多的用法可以看[表单渲染组件](表单渲染组件)
+:::
 
 ## 节点、树以及虚拟 DOM
 
@@ -103,7 +111,7 @@ Vue.component('anchored-heading', {
 
 上述 HTML 对应的 DOM 节点树如下图所示：
 
-![DOM 树可视化](/images/dom-tree.png)
+![DOM 树可视化](./images/dom-tree.png)
 
 每个元素都是一个节点。每段文字也是一个节点。甚至注释也都是节点。一个节点就是页面的一个部分。就像家谱树一样，每个节点都可以有孩子节点 (也就是说每个部分可以包含其它的一些部分)。
 
@@ -141,18 +149,18 @@ return createElement('h1', this.blogTitle)
 // @returns {VNode}
 createElement(
   // {String | Object | Function}
-  // 一个 HTML 标签名、组件选项对象，或者
+  // 一个 HTML 标签名、组件选项对象，或者
   // resolve 了上述任何一种的一个 async 函数。必填项。
-  'div',
+ 'div',
 
   // {Object}
-  // 一个与模板中 attribute 对应的数据对象。可选。
+  // 一个与模板中 attribute 对应的数据对象。可选。
   {
-    // (详情见下一节)
+   // (详情见下一节)
   },
 
   // {String | Array}
-  // 子级虚拟节点 (VNodes)，由 `createElement()` 构建而成，
+  // 子级虚拟节点 (VNodes)，由 `createElement()` 构建而成，
   // 也可以使用字符串来生成“文本虚拟节点”。可选。
   [
     '先写一些文字',
