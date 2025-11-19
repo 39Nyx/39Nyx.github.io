@@ -7,7 +7,7 @@ group:
 
 ## 概述
 
-Vue 在插入、更新或者移除 DOM 时，提供多种不同方式的应用过渡效果。包括以下工具：
+Vue 在插入、更新或者移除 `DOM` 时，提供多种不同方式的应用过渡效果。包括以下工具：
 
 - 在 CSS 过渡和动画中自动应用 class
 - 可以配合使用第三方 CSS 动画库，如 Animate.css
@@ -56,7 +56,7 @@ new Vue({
 }
 ```
 
-{% raw %}
+```vue | pure
 <div id="demo">
   <button v-on:click="show = !show">
     Toggle
@@ -81,7 +81,7 @@ new Vue({
   opacity: 0
 }
 </style>
-{% endraw %}
+```
 
 当插入或删除包含在 `transition` 组件中的元素时，Vue 将会做以下处理：
 
@@ -155,7 +155,7 @@ new Vue({
 }
 ```
 
-{% raw %}
+```
 <div id="example-1" class="demo">
   <button @click="show = !show">
     Toggle render
@@ -184,7 +184,7 @@ new Vue({
   opacity: 0;
 }
 </style>
-{% endraw %}
+```
 
 ### CSS 动画
 
@@ -230,7 +230,7 @@ new Vue({
 }
 ```
 
-{% raw %}
+```
 <div id="example-2" class="demo">
   <button @click="show = !show">Toggle show</button>
   <transition name="bounce">
@@ -284,7 +284,7 @@ new Vue({
   }
 })
 </script>
-{% endraw %}
+```
 
 ### 自定义过渡的类名
 
@@ -327,7 +327,7 @@ new Vue({
 })
 ```
 
-{% raw %}
+```
 <link href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1" rel="stylesheet" type="text/css">
 <div id="example-3" class="demo">
   <button @click="show = !show">
@@ -349,7 +349,7 @@ new Vue({
   }
 })
 </script>
-{% endraw %}
+```
 
 ### 同时使用过渡和动画
 
@@ -501,7 +501,7 @@ new Vue({
 })
 ```
 
-{% raw %}
+```
 <div id="example-4" class="demo">
   <button @click="show = !show">
     Toggle
@@ -545,7 +545,7 @@ new Vue({
   }
 })
 </script>
-{% endraw %}
+```
 
 ## 初始渲染的过渡
 
@@ -669,7 +669,7 @@ computed: {
 
 这里还有一个问题，试着点击下面的按钮：
 
-{% raw %}
+```
 <div id="no-mode-demo" class="demo">
   <transition name="no-mode-fade">
     <button v-if="on" key="on" @click="on = false">
@@ -696,13 +696,13 @@ new Vue({
   opacity: 0
 }
 </style>
-{% endraw %}
+```
 
 在“on”按钮和“off”按钮的过渡中，两个按钮都被重绘了，一个离开过渡的时候另一个开始进入过渡。这是 `<transition>` 的默认行为 - 进入和离开同时发生。
 
 在元素绝对定位在彼此之上的时候运行正常：
 
-{% raw %}
+```
 <div id="no-mode-absolute-demo" class="demo">
   <div class="no-mode-absolute-demo-wrapper">
     <transition name="no-mode-absolute-fade">
@@ -738,11 +738,11 @@ new Vue({
   opacity: 0;
 }
 </style>
-{% endraw %}
+```
 
 然后，我们加上 translate 让它们运动像滑动过渡：
 
-{% raw %}
+```
 <div id="no-mode-translate-demo" class="demo">
   <div class="no-mode-translate-demo-wrapper">
     <transition name="no-mode-translate-fade">
@@ -784,7 +784,7 @@ new Vue({
   transform: translateX(-31px);
 }
 </style>
-{% endraw %}
+```
 
 同时生效的进入和离开的过渡不能满足所有要求，所以 Vue 提供了**过渡模式**
 
@@ -800,7 +800,7 @@ new Vue({
 </transition>
 ```
 
-{% raw %}
+```
 <div id="with-mode-demo" class="demo">
   <transition name="with-mode-fade" mode="out-in">
     <button v-if="on" key="on" @click="on = false">
@@ -827,13 +827,13 @@ new Vue({
   opacity: 0
 }
 </style>
-{% endraw %}
+```
 
 只用添加一个简单的 attribute，就解决了之前的过渡问题而无需任何额外的代码。
 
 `in-out` 模式不是经常用到，但对于一些稍微不同的过渡效果还是有用的。将之前滑动淡出的例子结合：
 
-{% raw %}
+```
 <div id="in-out-translate-demo" class="demo">
   <div class="in-out-translate-demo-wrapper">
     <transition name="in-out-translate-fade" mode="in-out">
@@ -875,7 +875,7 @@ new Vue({
   transform: translateX(-31px);
 }
 </style>
-{% endraw %}
+```
 
 很酷吧？
 
@@ -916,7 +916,7 @@ new Vue({
 }
 ```
 
-{% raw %}
+```
 <div id="transition-components-demo" class="demo">
   <input v-model="view" type="radio" value="v-a" id="a" name="view"><label for="a">A</label>
   <input v-model="view" type="radio" value="v-b" id="b" name="view"><label for="b">B</label>
@@ -948,7 +948,7 @@ new Vue({
   }
 })
 </script>
-{% endraw %}
+```
 
 ## 列表过渡
 
@@ -1016,7 +1016,7 @@ new Vue({
 }
 ```
 
-{% raw %}
+```
 <div id="list-demo">
   <button v-on:click="add">Add</button>
   <button v-on:click="remove">Remove</button>
@@ -1059,7 +1059,7 @@ new Vue({
   transform: translateY(30px);
 }
 </style>
-{% endraw %}
+```
 
 这个例子有个问题，当添加和移除元素的时候，周围的元素会瞬间移动到他们的新布局的位置，而不是平滑的过渡，我们下面会解决这个问题。
 
@@ -1102,7 +1102,7 @@ new Vue({
 }
 ```
 
-{% raw %}
+```
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.14.1/lodash.min.js"></script>
 <div id="flip-list-demo" class="demo">
   <button v-on:click="shuffle">Shuffle</button>
@@ -1130,7 +1130,7 @@ new Vue({
   transition: transform 1s;
 }
 </style>
-{% endraw %}
+```
 
 这个看起来很神奇，内部的实现，Vue 使用了一个叫 [FLIP](https://aerotwist.com/blog/flip-your-animations/) 简单的动画队列
 使用 transforms 将元素从之前的位置平滑过渡新的位置。
@@ -1195,7 +1195,7 @@ new Vue({
 }
 ```
 
-{% raw %}
+```
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.14.1/lodash.min.js"></script>
 <div id="list-complete-demo" class="demo">
   <button v-on:click="shuffle">Shuffle</button>
@@ -1244,13 +1244,13 @@ new Vue({
   position: absolute;
 }
 </style>
-{% endraw %}
+```
 
 <p class="tip">需要注意的是使用 FLIP 过渡的元素不能设置为 `display: inline` 。作为替代方案，可以设置为 `display: inline-block` 或者放置于 flex 中</p>
 
 FLIP 动画不仅可以实现单列过渡，多维网格也[同样可以过渡](https://codesandbox.io/s/github/vuejs/v2.vuejs.org/tree/master/src/v2/examples/vue-20-list-move-transitions)：
 
-{% raw %}
+```
 <div id="sudoku-demo" class="demo">
   <strong>Lazy Sudoku</strong>
   <p>Keep hitting the shuffle button until you win.</p>
@@ -1309,7 +1309,7 @@ new Vue({
   transition: transform 1s;
 }
 </style>
-{% endraw %}
+```
 
 ### 列表的交错过渡
 
@@ -1387,7 +1387,7 @@ new Vue({
 })
 ```
 
-{% raw %}
+```
 <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>
 <div id="example-5" class="demo">
   <input v-model="query">
@@ -1455,7 +1455,7 @@ new Vue({
   }
 })
 </script>
-{% endraw %}
+```
 
 ## 可复用的过渡
 
