@@ -95,70 +95,44 @@ Vue 提供了 `transition` 的封装组件，在下列情形中，可以给任�
 
 下面是一个简单例子：
 
-``` html
-<div id="example-1">
-  <button @click="show = !show">
-    Toggle render
-  </button>
-  <transition name="slide-fade">
-    <p v-if="show">hello</p>
-  </transition>
-</div>
-```
+```vue
+<template>
+  <div id="example-1">
+    <button @click="show = !show">
+      Toggle render
+    </button>
+    <transition name="slide-fade">
+      <p v-if="show">hello</p>
+    </transition>
+  </div>
+</template>
 
-``` js
-new Vue({
-  el: '#example-1',
-  data: {
-    show: true
-  }
-})
-```
-
-``` css
-/* 可以设置不同的进入和离开动画 */
-/* 设置持续时间和动画函数 */
-.slide-fade-enter-active {
-  transition: all .3s ease;
-}
-.slide-fade-leave-active {
-  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
-}
-.slide-fade-enter, .slide-fade-leave-to
-/* .slide-fade-leave-active for below version 2.1.8 */ {
-  transform: translateX(10px);
-  opacity: 0;
-}
-```
-
-```
-<div id="example-1" class="demo">
-  <button @click="show = !show">
-    Toggle render
-  </button>
-  <transition name="slide-fade">
-    <p v-if="show">hello</p>
-  </transition>
-</div>
 <script>
-new Vue({
-  el: '#example-1',
-  data: {
-    show: true
+  export default {
+    name: 'Example1',
+    data() {
+      return {
+        show: true
+      }
+    }
   }
-})
+  
 </script>
-<style>
-.slide-fade-enter-active {
-  transition: all .3s ease;
-}
-.slide-fade-leave-active {
-  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
-}
-.slide-fade-enter, .slide-fade-leave-to {
-  transform: translateX(10px);
-  opacity: 0;
-}
+
+<style scope>
+  /* 可以设置不同的进入和离开动画 */
+  /* 设置持续时间和动画函数 */
+  .slide-fade-enter-active {
+    transition: all .3s ease;
+  }
+  .slide-fade-leave-active {
+    transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+  }
+  .slide-fade-enter, .slide-fade-leave-to
+    /* .slide-fade-leave-active for below version 2.1.8 */ {
+    transform: translateX(10px);
+    opacity: 0;
+  }
 </style>
 ```
 
@@ -168,51 +142,15 @@ CSS 动画用法同 CSS 过渡，区别是在动画中 `v-enter` 类名在节点
 
 示例：(省略了兼容性前缀)
 
-``` html
-<div id="example-2">
-  <button @click="show = !show">Toggle show</button>
-  <transition name="bounce">
-    <p v-if="show">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris facilisis enim libero, at lacinia diam fermentum id. Pellentesque habitant morbi tristique senectus et netus.</p>
-  </transition>
-</div>
-```
-
-``` js
-new Vue({
-  el: '#example-2',
-  data: {
-    show: true
-  }
-})
-```
-
-``` css
-.bounce-enter-active {
-  animation: bounce-in .5s;
-}
-.bounce-leave-active {
-  animation: bounce-in .5s reverse;
-}
-@keyframes bounce-in {
-  0% {
-    transform: scale(0);
-  }
-  50% {
-    transform: scale(1.5);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-```
-
-```
-<div id="example-2" class="demo">
-  <button @click="show = !show">Toggle show</button>
-  <transition name="bounce">
-    <p v-if="show">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris facilisis enim libero, at lacinia diam fermentum id. Pellentesque habitant morbi tristique senectus et netus.</p>
-  </transition>
-</div>
+```vue
+<template>
+  <div id="example-2" class="demo">
+    <button @click="show = !show">Toggle show</button>
+    <transition name="bounce">
+      <p v-if="show">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris facilisis enim libero, at lacinia diam fermentum id. Pellentesque habitant morbi tristique senectus et netus.</p>
+    </transition>
+  </div>
+</template>
 
 <style>
   .bounce-enter-active {
@@ -253,12 +191,14 @@ new Vue({
   }
 </style>
 <script>
-new Vue({
-  el: '#example-2',
-  data: {
-    show: true
+  export default {
+    name: 'Example2',
+    data() {
+      return {
+        show: true
+      }
+    }
   }
-})
 </script>
 ```
 
