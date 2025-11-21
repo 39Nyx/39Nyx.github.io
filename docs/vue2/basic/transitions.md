@@ -215,56 +215,37 @@ CSS 动画用法同 CSS 过渡，区别是在动画中 `v-enter` 类名在节点
 
 他们的优先级高于普通的类名，这对于 Vue 的过渡系统和其他第三方 CSS 动画库，如 [Animate.css](https://daneden.github.io/animate.css/) 结合使用十分有用。
 
-示例：
-
-``` html
-<link href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1" rel="stylesheet" type="text/css">
-
-<div id="example-3">
-  <button @click="show = !show">
-    Toggle render
-  </button>
-  <transition
-    name="custom-classes-transition"
-    enter-active-class="animated tada"
-    leave-active-class="animated bounceOutRight"
-  >
-    <p v-if="show">hello</p>
-  </transition>
-</div>
-```
-
-``` js
-new Vue({
-  el: '#example-3',
-  data: {
-    show: true
-  }
-})
-```
-
-```
-<link href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1" rel="stylesheet" type="text/css">
-<div id="example-3" class="demo">
-  <button @click="show = !show">
-    Toggle render
-  </button>
-  <transition
-    name="custom-classes-transition"
-    enter-active-class="animated tada"
-    leave-active-class="animated bounceOutRight"
-  >
-    <p v-if="show">hello</p>
-  </transition>
-</div>
+```vue
+<template>
+  <div id="example-3" class="demo">
+    <button @click="show = !show">
+      Toggle render
+    </button>
+    <transition
+      name="custom-classes-transition"
+      enter-active-class="animate__animated animate__fadeInRightBig"
+      leave-active-class="animate__animated animate__fadeOutRightBig"
+    >
+      <p v-if="show">hello</p>
+    </transition>
+  </div>
+</template>
 <script>
-new Vue({
-  el: '#example-3',
-  data: {
-    show: true
+export default {
+  name: 'Example3',
+  data() {
+    return {
+      show: true
+    }
   }
-})
+}
 </script>
+
+<style scope>
+  #example-3 {
+    overflow: hidden;
+  }
+</style>
 ```
 
 ### 同时使用过渡和动画
